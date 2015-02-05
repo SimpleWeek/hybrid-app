@@ -49,7 +49,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'production',
-            "api.endpoint": 'http://simpleweek.com/api'
+            "api.endpoint": 'https://simpleweek.com/api'
           }
         }
       }
@@ -356,7 +356,7 @@ module.exports = function (grunt) {
       },
       continuous: {
         browsers: ['PhantomJS'],
-        singleRun: true,
+        singleRun: true
       }
     },
 
