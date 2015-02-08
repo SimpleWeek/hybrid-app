@@ -14,6 +14,9 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  var CLIENT_ID = '1_3zb3kuyxz06cs848ogosoos4kc40808okso4o4gkgs4s0w4s4o',
+      CLIENT_SECRET = '5na7xb8cjc0084w80s4s8gckcs8c4ooc0ks0w0g8okwwkgsk88';
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -41,7 +44,11 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            "api.endpoint": 'https://simpleweek.com/api'
+            api: {
+              endpoint: 'https://simpleweek.com/api',
+              'client.id': CLIENT_ID,
+              'client.secret': CLIENT_SECRET
+            }
           }
         }
       },
@@ -49,7 +56,11 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'production',
-            "api.endpoint": 'https://simpleweek.com/api'
+            api: {
+              endpoint: 'https://simpleweek.com/api',
+              'client.id': CLIENT_ID,
+              'client.secret': CLIENT_SECRET
+            }
           }
         }
       }
