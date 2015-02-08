@@ -4,6 +4,19 @@
 
 Hybrid mobile application built with Ionicframework / Cordova / AngularJS for http://simpleweek.com
 
+# OAuth2-secured API
+
+Key  | Value
+------------- | -------------
+CLIENT_ID  | 1_3zb3kuyxz06cs848ogosoos4kc40808okso4o4gkgs4s0w4s4o
+CLIENT_SECRET  | 5na7xb8cjc0084w80s4s8gckcs8c4ooc0ks0w0g8okwwkgsk88
+
+### Get a token: 
+    GET https://simpleweek.com/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=password&username=USERNAME&password=PASSWORD
+
+### Then make API calls using fetched 'acess token':
+    GET https://simpleweek.com/api/todos?access_token=TOKEN
+
 # Debugging application with ADB
 
-adb logcat Cordova:D DroidGap:D CordovaLog:D *:S
+Run `adb logcat Cordova:D DroidGap:D CordovaLog:D *:S`
