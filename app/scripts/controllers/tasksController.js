@@ -1,34 +1,40 @@
 'use strict';
 angular.module('Simpleweek.controllers')
 
-.controller('TasksController', function($scope, $http, $moment, ENV) {
-  $scope.tasks = [];
+  .controller('TasksController', function ($scope, $http, $moment, ENV) {
+    $scope.tasks = [];
 
-  if (0 === $scope.tasks.length) {
-    var response = $http.get(ENV['api.endpoint'] + '/todos?access_token=ZjQ3Nzk1ZDIxNTA1MWRhZWRmNjU0OTNlNjhkOWFmNGE2YTU2ZjhiMGE0MjVmZjE5ZGU1N2Y1Y2E3MTE0ZTJiMQ&day=' + $moment().format('YYYY-MM-DD'));
+    $scope.env = ENV;
 
-    response.then(function(data) {
-      $scope.tasks = data.data;
-    });
-  }
+    if (0 === $scope.tasks.length) {
+      var url = ENV['api.endpoint'] + '/todos?access_token=ZTg2ZjhmZjdmZWI3MGJiODY2MGNmYWY0NTFmZGZkOGZjYjA1NDg2NTliZmJmYmQ2MGQ4ZmFkMDkwZjE0NGNkMQ&day=' + $moment().format('YYYY-MM-DD');
+      var response = $http.get(url);
 
-  $scope.updateTask = function(task) {
+      response.then(function (data) {
+        $scope.tasks = data.data;
+      });
 
-    task.text += '!';
+      response.error(function (e, a, b, c) {
+        console.log('error', e, a, b, c);
+      });
+    }
 
-    var response = $http({
-      method: 'PUT',
-      url: ENV['api.endpoint'] + '/todos/' + task.id + '.json?access_token=ZjQ3Nzk1ZDIxNTA1MWRhZWRmNjU0OTNlNjhkOWFmNGE2YTU2ZjhiMGE0MjVmZjE5ZGU1N2Y1Y2E3MTE0ZTJiMQ',
-      data: task
-    });
+    $scope.updateTask = function (task) {
 
-    console.log(response);
-    response.then(function(data) {
+      task.text += '!';
 
-    });
+      var response = $http({
+        method: 'PUT',
+        url: ENV['api.endpoint'] + '/todos/' + task.id + '.json?access_token=ZTg2ZjhmZjdmZWI3MGJiODY2MGNmYWY0NTFmZGZkOGZjYjA1NDg2NTliZmJmYmQ2MGQ4ZmFkMDkwZjE0NGNkMQ',
+        data: task
+      });
 
-    response.error(function(e, a, b, c) {
-      console.log('error', e, a ,b ,c);
-    })
-  };
-});
+      response.then(function (data) {
+
+      });
+
+      response.error(function (e, a, b, c) {
+        console.log('error', e, a, b, c);
+      });
+    };
+  });

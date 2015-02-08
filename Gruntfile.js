@@ -41,7 +41,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            "api.endpoint": 'http://todo.com/app_dev.php/api'
+            "api.endpoint": 'https://simpleweek.com/api'
           }
         }
       },
