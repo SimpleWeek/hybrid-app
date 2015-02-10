@@ -1,0 +1,23 @@
+<ion-view title="SimpleWeek">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header padding">
+    <div class="logo">
+    </div>
+    <div class="slogan">
+      <p>
+        A hybrid (ionic, cordova) authentication app powered by a nodejs server :)
+      </p>
+      <p>
+        By <a class="pseudo-link" ng-click="launchFrnchNrd()">@frnchnrd</a>
+      </p>
+    </div>
+    <button class="button button-block button-stable" ng-click="navigateTo('app.auth')">
+      Sign In
+    </button>
+    <button class="button button-block button-positive" ng-click="navigateTo('app.auth.signup')">
+      Sign up
+    </button>
+  </ion-content>
+</ion-view>

@@ -3,6 +3,7 @@
 describe('Controller: TaskController', function () {
 
   var should = chai.should();
+  var expect = chai.expect;
 
   // load the controller's module
   beforeEach(module('Simpleweek'));
@@ -17,4 +18,8 @@ describe('Controller: TaskController', function () {
       $scope: scope
     });
   }));
+
+  it('should have initialized empty tasks property', function() {
+    expect(scope.task).to.be.undefined();
+  });
 });

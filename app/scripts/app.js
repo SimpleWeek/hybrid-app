@@ -49,7 +49,17 @@ angular.module('Simpleweek', [
       url: '/app',
       abstract: true,
       templateUrl: 'templates/menu.html',
-      controller: 'AppCtrl'
+      controller: 'AppController'
+    })
+
+    .state('app.start', {
+      url: '/start',
+      views: {
+        'menuContent' :{
+          templateUrl: 'templates/start.html',
+          controller: 'AppController'
+        }
+      }
     })
 
     .state('app.tasks', {
@@ -66,12 +76,13 @@ angular.module('Simpleweek', [
       url: '/tasks/:taskId',
       views: {
         'menuContent' :{
-          'templateUrl': 'templates/task.html',
+          templateUrl: 'templates/task.html',
           controller: 'TaskController'
         }
       }
     });
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/tasks');
+  $urlRouterProvider.otherwise('/app/start');
 });
 
