@@ -6,3 +6,11 @@ before_script:
   - npm install -g bower
   - bower install
   - grunt ngconstant:production
+  - npm install -g codeclimate-test-reporter
+
+after_script:
+  - cat coverage/lcov.info | codeclimate
+
+addons:
+  code_climate:
+    repo_token: d9332d9216171bc23fd790cfe9b72748190bc7823758e20e201db9eaaa2e26af
