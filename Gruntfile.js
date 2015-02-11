@@ -357,8 +357,8 @@ module.exports = function (grunt) {
         coverageReporter: {
           reporters: [
             { type: 'html', dir: 'coverage/' },
-            { type: 'text-summary' }//,
-            //{ type: 'lcovonly', dir: 'coverage/', subdir: '.', file: 'lcov.info' }
+            { type: 'text-summary' },
+            { type: 'lcovonly', dir: 'coverage/', subdir: '.', file: 'lcov.info' }
           ]
         }
       },
