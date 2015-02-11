@@ -20,6 +20,7 @@ describe('Controller: TaskController', function () {
   }));
 
   it('should have initialized empty tasks property', function() {
-    expect(scope.task).to.be.undefined();
+    console.log(expect);
+    expect(scope.test).to.equal('test');
   });
 });
