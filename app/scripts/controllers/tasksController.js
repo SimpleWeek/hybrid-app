@@ -7,7 +7,7 @@ angular.module('Simpleweek.controllers')
     $scope.env = ENV;
 
     if (0 === $scope.tasks.length) {
-      var url = ENV.api.endpoint + '/todos?access_token=ZTg2ZjhmZjdmZWI3MGJiODY2MGNmYWY0NTFmZGZkOGZjYjA1NDg2NTliZmJmYmQ2MGQ4ZmFkMDkwZjE0NGNkMQ&day=' + $moment().format('YYYY-MM-DD');
+      var url = ENV.api.endpoint + '/todos?access_token=ZTg2ZjhmZjdmZWI3MGJiODY2MGNmYWY0NTFmZGZkOGZjYjA1NDg2NTliZmJmYmQ2MGQ4ZmFkMDkwZjE0NGNkMQ&day=today';
       var response = $http.get(url);
 
       response.then(function (data) {
