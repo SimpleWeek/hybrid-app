@@ -10,10 +10,11 @@ angular.module('Simpleweek', [
   'ionic',
   'config',
   'Simpleweek.controllers',
+  'Simpleweek.services',
   'angular-momentjs'
 ])
 
-.run(function($ionicPlatform, $ionicPopup) {
+.run(function($ionicPlatform, $ionicPopup, $rootScope, $ionicLoading, $state, AuthService) {
   $ionicPlatform.ready(function() {
 
     if (window.Connection) {
@@ -39,6 +40,24 @@ angular.module('Simpleweek', [
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    AuthService.init();
+
+    $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
+      $ionicLoading.show({
+        template: 'Loading...'
+      });
+
+      if (toState.authenticate && !AuthService.isLoggedIn()) {
+        // User isn’t authenticated
+        $state.transitionTo("app.auth");
+        event.preventDefault();
+      }
+    });
+
+    $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
+      $ionicLoading.hide();
+    });
   });
 })
 
@@ -55,31 +74,46 @@ angular.module('Simpleweek', [
     .state('app.start', {
       url: '/start',
       views: {
-        'menuContent' :{
+        'content' :{
           templateUrl: 'templates/start.html',
           controller: 'AppController'
         }
-      }
+      },
+      authenticate: false
     })
 
     .state('app.tasks', {
       url: '/tasks',
       views: {
-        'menuContent' :{
+        'content' :{
           templateUrl: 'templates/tasks.html',
           controller: 'TasksController'
         }
-      }
+      },
+      authenticate: true
     })
 
     .state('app.single_task', {
       url: '/tasks/:taskId',
       views: {
-        'menuContent' :{
+        'content' :{
           templateUrl: 'templates/task.html',
           controller: 'TaskController'
         }
-      }
+      },
+      authenticate: true
+    })
+
+    // authentication page
+    .state('app.auth', {
+      url: "/auth",
+      views: {
+        'content': {
+          controller: 'AuthController',
+          templateUrl: "templates/auth/signin.html"
+        }
+      },
+      authenticate : false
     });
 
   // if none of the above states are matched, use this as the fallback
