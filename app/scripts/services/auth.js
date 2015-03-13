@@ -8,6 +8,9 @@ angular.module('Simpleweek.services', [])
         // the user currently logged in
         currentUser: {},
 
+        /**
+         * Initialize current user information from local storage
+         */
         init: function () {
           var self = this;
 
@@ -15,12 +18,23 @@ angular.module('Simpleweek.services', [])
           //self.currentUser = new UserModel(userData);
         },
 
+        /**
+         * Whether or not current user is logged in
+         *
+         * @returns {boolean}
+         */
         isLoggedIn: function () {
           var self = this;
 
           return this.currentUser['access_token'] ? this.currentUser['access_token'].length > 0 : false ;
         },
 
+        /**
+         * Login user
+         *
+         * @param userData
+         * @returns promise
+         */
         login: function (userData) {
           var self = this;
           var deferred = $q.defer();
@@ -47,6 +61,12 @@ angular.module('Simpleweek.services', [])
           return deferred.promise;
         },
 
+        /**
+         * Update information of current user
+         *
+         * @param user
+         * @param options
+         */
         updateUser: function (user, options) {
           var self = this;
           var opts = {remove:false, set:false};
