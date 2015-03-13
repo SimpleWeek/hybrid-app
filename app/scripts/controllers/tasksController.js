@@ -1,13 +1,14 @@
 'use strict';
 angular.module('Simpleweek.controllers')
 
-  .controller('TasksController', function ($scope, $http, $moment, ENV) {
+  .controller('TasksController', function ($scope, $http, $moment, ENV, AuthService) {
     $scope.tasks = [];
 
     $scope.env = ENV;
+    console.log(AuthService.currentUser);
 
     if (0 === $scope.tasks.length) {
-      var url = ENV.api.endpoint + '/todos?access_token=ZTg2ZjhmZjdmZWI3MGJiODY2MGNmYWY0NTFmZGZkOGZjYjA1NDg2NTliZmJmYmQ2MGQ4ZmFkMDkwZjE0NGNkMQ&day=today';
+      var url = ENV.api.endpoint + '/todos?access_token=' + AuthService.currentUser["access_token"] + '&day=today';
       var response = $http.get(url);
 
       response.then(function (data) {
@@ -25,7 +26,7 @@ angular.module('Simpleweek.controllers')
 
       var response = $http({
         method: 'PUT',
-        url: ENV.api.endpoint + '/todos/' + task.id + '.json?access_token=ZTg2ZjhmZjdmZWI3MGJiODY2MGNmYWY0NTFmZGZkOGZjYjA1NDg2NTliZmJmYmQ2MGQ4ZmFkMDkwZjE0NGNkMQ',
+        url: ENV.api.endpoint + '/todos/' + task.id + '.json?access_token=' + AuthService.currentUser["access_token"],
         data: task
       });
 

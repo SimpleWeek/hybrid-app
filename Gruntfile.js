@@ -15,7 +15,8 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
 
   var CLIENT_ID = '1_3zb3kuyxz06cs848ogosoos4kc40808okso4o4gkgs4s0w4s4o',
-      CLIENT_SECRET = '5na7xb8cjc0084w80s4s8gckcs8c4ooc0ks0w0g8okwwkgsk88';
+      CLIENT_SECRET = '5na7xb8cjc0084w80s4s8gckcs8c4ooc0ks0w0g8okwwkgsk88',
+      baseUrl = 'https://simpleweek.com';
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -45,7 +46,8 @@ module.exports = function (grunt) {
           ENV: {
             name: 'development',
             api: {
-              endpoint: 'https://simpleweek.com/api',
+              'baseUrl': baseUrl,
+              'endpoint': 'https://simpleweek.com/api',
               'client.id': CLIENT_ID,
               'client.secret': CLIENT_SECRET
             }
@@ -57,7 +59,8 @@ module.exports = function (grunt) {
           ENV: {
             name: 'production',
             api: {
-              endpoint: 'https://simpleweek.com/api',
+              'baseUrl': baseUrl,
+              'endpoint': 'https://simpleweek.com/api',
               'client.id': CLIENT_ID,
               'client.secret': CLIENT_SECRET
             }
