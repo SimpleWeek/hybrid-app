@@ -11,7 +11,8 @@ angular.module('Simpleweek', [
   'config',
   'Simpleweek.controllers',
   'Simpleweek.services',
-  'angular-momentjs'
+  'angular-momentjs',
+  'ngStorage'
 ])
 
 .run(function($ionicPlatform, $ionicPopup, $rootScope, $ionicLoading, $state, AuthService) {
