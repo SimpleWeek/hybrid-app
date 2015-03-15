@@ -345,6 +345,7 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/lib/angular-mocks/angular-mocks.js',
           '<%= yeoman.app %>/lib/moment/moment.js',
           '<%= yeoman.app %>/lib/angular-momentjs/angular-momentjs.js',
+          '<%= yeoman.app %>/lib/ngstorage/ngStorage.js',
           '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
           'test/mock/**/*.js',
           'test/spec/**/*.js'
