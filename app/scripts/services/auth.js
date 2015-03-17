@@ -2,7 +2,7 @@
 
 angular.module('Simpleweek.services', [])
 
-  .service('AuthService', function($http, $rootScope, $q, ENV) {
+  .service('AuthService', function($http, $rootScope, $q, $localStorage, ENV) {
 
       var auth = {
         // the user currently logged in
@@ -15,7 +15,7 @@ angular.module('Simpleweek.services', [])
           var self = this;
 
           // setting currentUser
-          //self.currentUser = new UserModel(userData);
+          self.currentUser = $localStorage.appUser || {};
         },
 
         /**
@@ -43,9 +43,6 @@ angular.module('Simpleweek.services', [])
             console.log('success', response);
             userData['access_token'] = response['access_token'];
             self.updateUser(userData, {set: true});
-
-            //set token on success
-            //$cordovaLocalStorage.setItem('sessionToken',token);
 
             deferred.resolve(self.currentUser);
           };
@@ -75,11 +72,11 @@ angular.module('Simpleweek.services', [])
           angular.extend(self.currentUser, user);
 
           if (opts.remove === true) {
-            //$cordovaLocalStorage.removeItem('app_user');
+            delete $localStorage.appUser;
           }
 
           if (opts.set === true) {
-            //$cordovaLocalStorage.setItem('app_user',JSON.stringify(self.currentUser.info));
+            $localStorage.appUser = self.currentUser;
           }
         }
       };

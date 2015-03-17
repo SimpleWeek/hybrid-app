@@ -45,19 +45,11 @@ angular.module('Simpleweek', [
     AuthService.init();
 
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
-      $ionicLoading.show({
-        template: 'Loading...'
-      });
-
       if (toState.authenticate && !AuthService.isLoggedIn()) {
         // User isn’t authenticated
         $state.transitionTo("app.auth");
         event.preventDefault();
       }
-    });
-
-    $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
-      $ionicLoading.hide();
     });
   });
 })
