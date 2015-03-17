@@ -42,6 +42,7 @@ angular.module('Simpleweek.services', [])
           var success = function (response) {
             console.log('success', response);
             userData['access_token'] = response['access_token'];
+            userData['password'] = '';
             self.updateUser(userData, {set: true});
 
             deferred.resolve(self.currentUser);
