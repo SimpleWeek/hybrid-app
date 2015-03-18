@@ -40,6 +40,7 @@ angular.module('Simpleweek.controllers')
     };
 
     $scope.create = function() {
+      // TODO fetch config from server to get timezone, save in localstorage. Use it fot startDate
       $ionicPopup.prompt({
         title: 'Enter a new task text',
         inputType: 'text'
@@ -74,5 +75,21 @@ angular.module('Simpleweek.controllers')
         // Stop the ion-refresher from spinning
         $scope.$broadcast('scroll.refreshComplete');
       });
-    }
+    };
+
+    $scope.changeCompleted = function(task) {
+      // todo move to Task resource constant
+
+      if (1 == task.status) {
+        task.status = 2;
+      } else {
+        task.status = 1;
+      }
+
+      var response = $http({
+        method: 'PUT',
+        url: ENV.api.endpoint + '/todos/' + task.id + '.json?access_token=' + AuthService.currentUser["access_token"],
+        data: task
+      });
+    };
   });
