@@ -1,25 +1,15 @@
 'use strict';
 angular.module('Simpleweek.controllers')
 
-  .controller('TasksController', function ($scope, $http, $moment, $ionicPopup, $ionicLoading, ENV, AuthService) {
+  .controller('TasksController', function ($scope, $http, $moment, $ionicPopup, $ionicLoading, ENV, AuthService, Todo) {
     $scope.tasks = [];
 
     $scope.env = ENV;
     console.log(AuthService.currentUser);
 
-    $scope.fetchTodos = function () {
-      var url = ENV.api.endpoint + '/todos?access_token=' + AuthService.currentUser["access_token"] + '&day=today';
-      return $http.get(url);
-    };
-
     if (0 === $scope.tasks.length) {
-      var response = $scope.fetchTodos();
-      response.then(function (data) {
-        $scope.tasks = data.data;
-      });
-
-      response.error(function (e, a, b, c) {
-        console.log('error', e, a, b, c);
+      Todo.getForToday().then(function (tasks) {
+        $scope.tasks = tasks;
       });
     }
 
@@ -67,9 +57,8 @@ angular.module('Simpleweek.controllers')
     };
 
     $scope.refresh = function() {
-      var response = $scope.fetchTodos();
-      response.then(function (data) {
-        $scope.tasks = data.data;
+      Todo.getForToday().then(function (tasks) {
+        $scope.tasks = tasks;
       })
       .finally(function() {
         // Stop the ion-refresher from spinning
