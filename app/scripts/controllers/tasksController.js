@@ -3,9 +3,7 @@ angular.module('Simpleweek.controllers')
 
   .controller('TasksController', function ($scope, $http, $moment, $ionicPopup, $ionicLoading, ENV, AuthService, Todo) {
     $scope.tasks = [];
-
     $scope.env = ENV;
-    console.log(AuthService.currentUser);
 
     if (0 === $scope.tasks.length) {
       Todo.getForToday().then(function (tasks) {
@@ -14,19 +12,7 @@ angular.module('Simpleweek.controllers')
     }
 
     $scope.update = function (task) {
-      var response = $http({
-        method: 'PUT',
-        url: ENV.api.endpoint + '/todos/' + task.id + '.json?access_token=' + AuthService.currentUser["access_token"],
-        data: task
-      });
-
-      response.then(function (data) {
-
-      });
-
-      response.error(function (e, a, b, c) {
-        console.log('error', e, a, b, c);
-      });
+      task.put();
     };
 
     $scope.create = function() {
@@ -46,11 +32,9 @@ angular.module('Simpleweek.controllers')
     };
 
     $scope.remove = function(task) {
-      var url = ENV.api.endpoint + '/todos/' + task.id + '.json?access_token=' + AuthService.currentUser["access_token"];
-
       $ionicLoading.show({template: 'Loading...'});
 
-      $http.delete(url).then(function() {
+      task.remove().then(function() {
         $ionicLoading.hide();
         $scope.tasks.splice($scope.tasks.indexOf(task), 1);
       });
@@ -75,10 +59,6 @@ angular.module('Simpleweek.controllers')
         task.status = 1;
       }
 
-      var response = $http({
-        method: 'PUT',
-        url: ENV.api.endpoint + '/todos/' + task.id + '.json?access_token=' + AuthService.currentUser["access_token"],
-        data: task
-      });
+      task.put();
     };
   });
