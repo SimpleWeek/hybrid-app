@@ -18,7 +18,7 @@ angular.module('Simpleweek', [
   'restangular'
 ])
 
-  .run(function ($ionicPlatform, $ionicPopup, $rootScope, $ionicLoading, $state, AuthService, Restangular, ENV) {
+  .run(function ($ionicPlatform, $ionicPopup, $rootScope, $ionicLoading, $state, $ionicViewService, AuthService, Restangular, ENV) {
     $ionicPlatform.ready(function () {
 
       if (window.Connection) {
@@ -48,6 +48,7 @@ angular.module('Simpleweek', [
       AuthService.init();
 
       $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+        console.log('$stateChangeStart');
         if (toState.authenticate && !AuthService.isLoggedIn()) {
           // User isn’t authenticated
           $state.transitionTo("app.auth");
@@ -60,6 +61,13 @@ angular.module('Simpleweek', [
 
       Restangular.setErrorInterceptor(function(resp) {
         console.log('error interceptor - ', resp);
+
+        if (401 == resp.status) {
+          AuthService.currentUser['access_token'] = null;
+          $ionicViewService.nextViewOptions({disableBack: true});
+          $state.transitionTo("app.auth");
+        }
+
         return false; // stop the promise chain
       });
     });

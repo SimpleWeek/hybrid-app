@@ -2,7 +2,7 @@
 
 angular.module('Simpleweek.services', [])
 
-  .service('AuthService', function($http, $rootScope, $q, $localStorage, ENV) {
+  .service('AuthService', function($http, $rootScope, $q, $localStorage, ENV, Restangular) {
 
       var auth = {
         // the user currently logged in
@@ -40,9 +40,11 @@ angular.module('Simpleweek.services', [])
           var deferred = $q.defer();
 
           var success = function (response) {
-            console.log('success', response);
             userData['access_token'] = response['access_token'];
             userData['password'] = '';
+
+            Restangular.configuration.defaultRequestParams.common.access_token = userData['access_token'];
+
             self.updateUser(userData, {set: true});
 
             deferred.resolve(self.currentUser);
@@ -69,7 +71,7 @@ angular.module('Simpleweek.services', [])
           var self = this;
           var opts = {remove:false, set:false};
 
-          angular.extend(opts,options);
+          angular.extend(opts, options);
           angular.extend(self.currentUser, user);
 
           if (opts.remove === true) {

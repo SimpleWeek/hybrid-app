@@ -9,17 +9,12 @@ angular.module('Simpleweek.controllers')
     $scope.authenticateUser = function () {
       var success = function (response) {
         $ionicLoading.hide();
-
-        $ionicViewService.nextViewOptions({
-          disableBack: true
-        });
+        $ionicViewService.nextViewOptions({disableBack: true});
 
         $state.go('app.tasks');
       };
 
-      $ionicLoading.show({
-        template: 'Loading...'
-      });
+      $ionicLoading.show({template: 'Loading...'});
 
       // use AuthService to login
       AuthService.login($scope.user).then(success);
