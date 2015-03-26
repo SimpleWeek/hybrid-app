@@ -14,9 +14,15 @@ angular.module('Simpleweek.controllers')
         $state.go('app.tasks');
       };
 
+      var error = function(response) {
+        $ionicLoading.hide();
+        alert('error');
+        // TODO add form validation (red errors)
+      };
+
       $ionicLoading.show({template: 'Loading...'});
 
       // use AuthService to login
-      AuthService.login($scope.user).then(success);
+      AuthService.login($scope.user).then(success, error);
     }
   });

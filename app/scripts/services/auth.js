@@ -26,7 +26,7 @@ angular.module('Simpleweek.services', [])
         isLoggedIn: function () {
           var self = this;
 
-          return this.currentUser['access_token'] ? this.currentUser['access_token'].length > 0 : false ;
+          return this.currentUser['access_token'] ? this.currentUser['access_token'].length > 0 : false;
         },
 
         /**
@@ -72,7 +72,11 @@ angular.module('Simpleweek.services', [])
           var opts = {remove:false, set:false};
 
           angular.extend(opts, options);
-          angular.extend(self.currentUser, user);
+          if (null === user) {
+            self.currentUser = {};
+          } else {
+            angular.extend(self.currentUser, user);
+          }
 
           if (opts.remove === true) {
             delete $localStorage.appUser;
