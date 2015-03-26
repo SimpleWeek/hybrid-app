@@ -1,3 +1,69 @@
 /* Your application styles go here */
 
 .todos .completed {text-decoration: line-through; color: #C5C5C5;}
+
+.main-login-page .list, .signup-page .list {
+  width: 88%;
+  margin: 20% auto 30px auto;
+}
+
+.main-login-page .list label.item-input, .signup-page .list label.item-input {
+  padding: 10px 0 4px 45px;
+  background: transparent;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+}
+
+.main-login-page .list label.item-input ::-webkit-input-placeholder, .signup-page .list label.item-input ::-webkit-input-placeholder {
+  color: #acadb5; }
+.main-login-page .list label.item-input :-moz-placeholder, .signup-page .list label.item-input :-moz-placeholder {
+  /* Firefox 18- */
+  color: #acadb5; }
+.main-login-page .list label.item-input ::-moz-placeholder, .signup-page .list label.item-input ::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #acadb5; }
+.main-login-page .list label.item-input :-ms-input-placeholder, .signup-page .list label.item-input :-ms-input-placeholder {
+  color: #acadb5; }
+.main-login-page .list label.item-input input[type="text"], .main-login-page .list label.item-input input[type="password"], .signup-page .list label.item-input input[type="text"], .signup-page .list label.item-input input[type="password"] {
+  font-size: 16px;
+}
+
+.main-login-page .ion-person, .main-login-page .ion-locked {
+  font-size: 25px;
+  color: #ddd;
+  display: block;
+  position: absolute;
+  background-position: center;
+  margin: 0 0 0 9%;
+  background-size: contain;
+  left: -22px;
+  top: 10px;
+}
+
+.main-login-page .button, .main-login-page .button, .signup-page .button, .signup-page .button {
+  width: 88%;
+  height: 56px;
+  margin: 5px auto;
+  position: relative;
+  padding: 0;
+  background-position: cover;
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+.main-login-page .button.button-signin, .main-login-page .button-signin.button, .signup-page .button.button-signin, .signup-page .button-signin.button {
+  text-align: center;
+  margin-bottom: 15px;
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.list {
+  position: relative;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
