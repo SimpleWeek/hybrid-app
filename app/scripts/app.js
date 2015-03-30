@@ -48,7 +48,7 @@ angular.module('Simpleweek', [
       AuthService.init();
 
       $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
-        console.log('$stateChangeStart');
+        console.log('$stateChangeStart');э
         if (toState.authenticate && !AuthService.isLoggedIn()) {
           // User isn’t authenticated
           $state.transitionTo("app.auth");
@@ -69,6 +69,13 @@ angular.module('Simpleweek', [
         }
 
         return false; // stop the promise chain
+      });
+
+      $ionicPlatform.on("resume", function(event) {
+        if ($state.current.name == 'app.start') {
+          $ionicViewService.nextViewOptions({disableBack: true});
+          $state.go('app.tasks');
+        }
       });
     });
   })
