@@ -2,15 +2,16 @@
 
 angular.module('Simpleweek.controllers', [])
 
-  .controller('AppController', function($scope, $state, $ionicViewService, AuthService) {
+  .controller('AppController', function($scope, $state, $ionicHistory, AuthService) {
 
     if (AuthService.isLoggedIn()) {
-      $ionicViewService.nextViewOptions({disableBack: true});
+      $ionicHistory.nextViewOptions({disableBack: true});
       $state.go('app.tasks');
     }
 
     $scope.logout = function() {
       AuthService.updateUser(null, {set: true, remove: true});
+      $ionicHistory.nextViewOptions({disableBack: true});
       $state.go('app.start')
     };
 

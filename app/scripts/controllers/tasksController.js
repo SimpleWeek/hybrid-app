@@ -5,11 +5,11 @@ angular.module('Simpleweek.controllers')
     $scope.tasks = [];
     $scope.env = ENV;
 
-    if (0 === $scope.tasks.length) {
+    $scope.$on('$ionicView.beforeEnter', function() {
       Todo.getForToday().then(function (tasks) {
         $scope.tasks = tasks;
       });
-    }
+    });
 
     $scope.update = function (task) {
       task.put();

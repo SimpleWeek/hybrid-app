@@ -18,7 +18,7 @@ angular.module('Simpleweek', [
   'restangular'
 ])
 
-  .run(function ($ionicPlatform, $ionicPopup, $rootScope, $ionicLoading, $state, $ionicViewService, AuthService, Restangular, ENV) {
+  .run(function ($ionicPlatform, $ionicPopup, $rootScope, $ionicLoading, $state, $ionicHistory, AuthService, Restangular, ENV) {
     $ionicPlatform.ready(function () {
 
       if (window.Connection) {
@@ -48,7 +48,6 @@ angular.module('Simpleweek', [
       AuthService.init();
 
       $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
-        console.log('$stateChangeStart');э
         if (toState.authenticate && !AuthService.isLoggedIn()) {
           // User isn’t authenticated
           $state.transitionTo("app.auth");
@@ -64,7 +63,7 @@ angular.module('Simpleweek', [
 
         if (401 == resp.status) {
           AuthService.currentUser['access_token'] = null;
-          $ionicViewService.nextViewOptions({disableBack: true});
+          $ionicHistory.nextViewOptions({disableBack: true});
           $state.transitionTo("app.auth");
         }
 
@@ -73,7 +72,7 @@ angular.module('Simpleweek', [
 
       $ionicPlatform.on("resume", function(event) {
         if ($state.current.name == 'app.start') {
-          $ionicViewService.nextViewOptions({disableBack: true});
+          $ionicHistory.nextViewOptions({disableBack: true});
           $state.go('app.tasks');
         }
       });
@@ -100,6 +99,7 @@ angular.module('Simpleweek', [
       })
 
       .state('app.tasks', {
+        cache: false,
         url: '/tasks',
         views: {
           'content': {

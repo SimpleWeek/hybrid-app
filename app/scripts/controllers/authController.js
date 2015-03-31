@@ -2,14 +2,14 @@
 
 angular.module('Simpleweek.controllers')
 
-  .controller('AuthController', function ($scope, $stateParams, $ionicLoading, $state, $ionicViewService, AuthService) {
+  .controller('AuthController', function ($scope, $stateParams, $ionicLoading, $state, $ionicHistory, AuthService) {
 
     $scope.user = {};
 
     $scope.authenticateUser = function () {
       var success = function (response) {
         $ionicLoading.hide();
-        $ionicViewService.nextViewOptions({disableBack: true});
+        $ionicHistory.nextViewOptions({disableBack: true});
 
         $state.go('app.tasks');
       };
