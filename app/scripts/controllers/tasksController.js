@@ -24,9 +24,18 @@ angular.module('Simpleweek.controllers')
       .then(function(result) {
         if(result !== undefined && result.length > 0) {
           // create
-          console.log(result);
-        } else {
-          console.log("Action not completed");
+          var newTask = {
+            text: result,
+            recurring: 0,
+            description: 'from mobile',
+            permanent: 0,
+            position: 10,
+            startDate: $moment()
+          };
+
+          Todo.post(newTask).then(function(restangularTask) {
+            $scope.tasks.push(restangularTask);
+          });
         }
       });
     };
