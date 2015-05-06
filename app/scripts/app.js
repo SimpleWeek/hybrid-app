@@ -89,6 +89,7 @@ angular.module('Simpleweek', [
 
       .state('app.start', {
         url: '/start',
+        cache: false,
         views: {
           'content': {
             templateUrl: 'templates/start.html',
@@ -124,6 +125,7 @@ angular.module('Simpleweek', [
       // authentication page
       .state('app.auth', {
         url: "/auth",
+        cache: false,
         views: {
           'content': {
             controller: 'AuthController',
