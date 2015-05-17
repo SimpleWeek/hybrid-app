@@ -7,6 +7,7 @@ angular.module('Simpleweek.controllers')
 
     $scope.$on('$ionicView.beforeEnter', function() {
       Todo.getForToday().then(function (tasks) {
+        // TODO test without this code (add if (0 == tasks.length))
         $scope.tasks = tasks;
       });
     });

@@ -2,7 +2,7 @@
   "name": "Simpleweek",
   "version": "0.0.0",
   "dependencies": {
-    "ionic": "v1.0.0-rc.5",
+    "ionic": "v1.0.0",
     "moment": "~2.9.0",
     "ngCordova": "v0.1.14-alpha",
     "angular-momentjs": "~0.1.8",
