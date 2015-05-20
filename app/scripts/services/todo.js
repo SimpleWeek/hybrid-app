@@ -7,6 +7,7 @@ angular.module('Simpleweek.services')
 
     return {
       post: _todosService.post,
+      get: _todosService.get,
       getForToday: function () {
         return _todosService.getList({'day': 'today'});
       }
