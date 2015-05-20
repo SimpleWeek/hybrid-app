@@ -6,7 +6,7 @@ describe('Controller: TaskController', function () {
   var expect = chai.expect;
 
   // load the controller's module
-  beforeEach(module('Simpleweek'));
+  /*beforeEach(module('Simpleweek'));
 
   var TaskController,
     scope;
@@ -21,5 +21,5 @@ describe('Controller: TaskController', function () {
 
   it('should have initialized empty tasks property', function() {
     expect(scope.tasks).to.have.length(0);
-  });
+  });*/
 });
