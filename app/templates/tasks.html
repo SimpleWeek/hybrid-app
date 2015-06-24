@@ -5,13 +5,13 @@
   <ion-nav-buttons side="right">
     <button class="right button button-icon icon ion-plus" ng-click="create()"></button>
   </ion-nav-buttons>
-  <ion-content overflow-scroll="true" class="has-header">
+  <ion-content class="has-header">
     <ion-refresher
       pulling-text="Pull to refresh..."
       on-refresh="refresh()">
     </ion-refresher>
     <ion-list class="todos" show-delete="false" can-swipe="true">
-      <ion-item ng-class="{ 'completed': 2 == task.status }" on-swipe-right="changeCompleted(task)" ng-repeat="task in tasks" ui-sref="app.single_task({ taskId: task.id })">
+      <ion-item ng-class="{ 'completed': 2 == task.status }" on-swipe-right="changeCompleted(task)" ng-repeat="task in tasks" ui-sref="app.single_task({ taskId: task.id, taskObject: task })">
         {{task.text}}
         <ion-option-button class="button-assertive icon ion-trash-a" ng-click="remove(task)"></ion-option-button>
       </ion-item>

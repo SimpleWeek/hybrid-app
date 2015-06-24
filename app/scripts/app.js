@@ -100,7 +100,7 @@ angular.module('Simpleweek', [
       })
 
       .state('app.tasks', {
-        cache: false,
+        cache: true,
         url: '/tasks',
         views: {
           'content': {
@@ -113,6 +113,9 @@ angular.module('Simpleweek', [
 
       .state('app.single_task', {
         url: '/tasks/:taskId',
+        params: {
+          taskObject: null
+        },
         views: {
           'content': {
             templateUrl: 'templates/task.html',
@@ -138,4 +141,3 @@ angular.module('Simpleweek', [
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/start');
   });
-
