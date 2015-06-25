@@ -50,7 +50,7 @@ angular.module('Simpleweek', [
       $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
         if (toState.authenticate && !AuthService.isLoggedIn()) {
           // User isn’t authenticated
-          $state.transitionTo("app.auth");
+          $state.transitionTo("app.signin");
           event.preventDefault();
         }
       });
@@ -64,7 +64,7 @@ angular.module('Simpleweek', [
         if (401 == resp.status) {
           AuthService.currentUser['access_token'] = null;
           $ionicHistory.nextViewOptions({disableBack: true});
-          $state.transitionTo("app.auth");
+          $state.transitionTo("app.signin");
         }
 
         return false; // stop the promise chain
@@ -78,7 +78,11 @@ angular.module('Simpleweek', [
       });
     });
   })
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
+
+    // DELETE request by default is sent with text/plain, so explicitly set to json
+    RestangularProvider.setDefaultHeaders({'Content-Type': 'application/json'});
+
     $stateProvider
       .state('app', {
         url: '/app',
@@ -126,13 +130,24 @@ angular.module('Simpleweek', [
       })
 
       // authentication page
-      .state('app.auth', {
-        url: "/auth",
+      .state('app.signin', {
+        url: "/signin",
         cache: false,
         views: {
           'content': {
             controller: 'AuthController',
             templateUrl: "templates/auth/signin.html"
+          }
+        },
+        authenticate: false
+      })
+      .state('app.signup', {
+        url: "/signup",
+        cache: false,
+        views: {
+          'content': {
+            controller: 'AuthController',
+            templateUrl: "templates/auth/signup.html"
           }
         },
         authenticate: false

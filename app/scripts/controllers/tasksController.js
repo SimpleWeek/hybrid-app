@@ -8,8 +8,8 @@ angular.module('Simpleweek.controllers')
     $scope.$on('$ionicView.beforeEnter', function() {
       if (0 == $scope.tasks.length) {
         Todo.getForToday().then(function (tasks) {
-          // TODO test without this code (add if (0 == tasks.length))
-         $scope.tasks = tasks;
+          //  TODO test without this code (add if (0 == tasks.length))
+          $scope.tasks = tasks;
         });
       }
     });

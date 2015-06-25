@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.simpleweek" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Simpleweek</name>
+  <name>SimpleWeek</name>
   <description>
         SimplewWeek - it is a powerful personal task manager with interesting workflow and awesome design.
     </description>
-  <author email="maks.rafalko@gmail.com" href="http://mrafalko.com">
+  <author email="maks.rafalko@gmail.com" href="http://simpleweek.com">
         Maks Rafalko
-    </author>
+  </author>
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="SplashScreen" value="screen"/>

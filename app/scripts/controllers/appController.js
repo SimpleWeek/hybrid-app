@@ -2,7 +2,7 @@
 
 angular.module('Simpleweek.controllers', [])
 
-  .controller('AppController', function($scope, $state, $ionicHistory, AuthService) {
+  .controller('AppController', function($scope, $state, $ionicHistory, AuthService, $ionicSideMenuDelegate) {
 
     if (AuthService.isLoggedIn()) {
       $ionicHistory.nextViewOptions({disableBack: true});
@@ -12,6 +12,11 @@ angular.module('Simpleweek.controllers', [])
     $scope.logout = function() {
       AuthService.updateUser(null, {set: true, remove: true});
       $ionicHistory.nextViewOptions({disableBack: true});
+
+      if ($ionicSideMenuDelegate.isOpenLeft()) {
+        $ionicSideMenuDelegate.toggleLeft();
+      }
+
       $state.go('app.start')
     };
 
