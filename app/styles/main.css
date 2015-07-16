@@ -69,3 +69,29 @@
   padding-left: 0;
   margin-bottom: 20px;
 }
+
+.bar-week {
+  height: 70px;
+}
+
+.bar-week .week-day {
+   text-align: center;
+   cursor: pointer;
+}
+
+.bar-week .week-day.active {
+  color: #27925C;
+}
+
+.has-week {
+  top: 114px !important;
+}
+
+/**
+ * Platform
+ * --------------------------------------------------
+ * Platform specific tweaks
+ */
+.platform-ios.platform-cordova:not(.fullscreen) .has-week {
+    top: 134px !important;
+}

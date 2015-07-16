@@ -5,13 +5,22 @@ angular.module('Simpleweek.controllers')
     $scope.tasks = [];
     $scope.env = ENV;
 
+    console.log('TasksController')
+
+    $scope.weekDays = Todo.buildWeekDays();
+
     $scope.$on('$ionicView.beforeEnter', function() {
+      console.log('$ionicView.beforeEnter');
+      console.log('count($scope.tasks) == ', $scope.tasks.length);
       if (0 == $scope.tasks.length) {
         Todo.getForToday().then(function (tasks) {
-          //  TODO test without this code (add if (0 == tasks.length))
+          console.log('Todo.getForToday().then callback')
+          //  TODO  add if (0 == tasks.length) and cache = true
+          // check that ios and android both load tasks or don't load
           $scope.tasks = tasks;
         });
       }
+      $scope.weekDays = Todo.buildWeekDays();
     });
 
     $scope.update = function (task) {
@@ -55,6 +64,7 @@ angular.module('Simpleweek.controllers')
     $scope.refresh = function() {
       Todo.getForToday().then(function (tasks) {
         $scope.tasks = tasks;
+        $scope.weekDays = Todo.buildWeekDays();
       })
       .finally(function() {
         // Stop the ion-refresher from spinning
@@ -64,7 +74,6 @@ angular.module('Simpleweek.controllers')
 
     $scope.changeCompleted = function(task) {
       // todo move to Task resource constant
-
       if (1 == task.status) {
         task.status = 2;
       } else {
@@ -72,5 +81,18 @@ angular.module('Simpleweek.controllers')
       }
 
       task.put();
+    };
+
+    $scope.chooseWeekDay = function(weekDay) {
+      $ionicLoading.show({template: 'Loading...'});
+      _.each($scope.weekDays, function (day) {
+        day.active = false;
+      })
+      $scope.weekDays[$scope.weekDays.indexOf(weekDay)].active = true;
+
+      Todo.getByDay(weekDay.date).then(function (tasks) {
+        $ionicLoading.hide();
+        $scope.tasks = tasks;
+      });
     };
   });
