@@ -14,12 +14,12 @@ describe('Controller: TasksController', function () {
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    TaskController = $controller('TaskController', {
+    TaskController = $controller('TasksController', {
       $scope: scope
     });
   }));
 
   it('should have initialized empty tasks property', function() {
-    expect(scope.test).to.equal('test');
+    assert.lengthOf(scope.tasks, 0);
   });
 });
