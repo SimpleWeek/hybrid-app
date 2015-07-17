@@ -13,7 +13,6 @@ angular.module('Simpleweek.services', [])
          */
         init: function () {
           var self = this;
-
           // setting currentUser
           self.currentUser = $localStorage.appUser || {};
         },
@@ -27,6 +26,22 @@ angular.module('Simpleweek.services', [])
           var self = this;
 
           return this.currentUser['access_token'] ? this.currentUser['access_token'].length > 0 : false;
+        },
+
+        /**
+         * Load user's config
+         */
+        loadUserConfig: function (token) {
+          var self = this;
+          var url = ENV.api["baseUrl"] + '/api/users/me?access_token=' + token;
+          $http.get(url)
+            .success(function (configResponse) {
+              self.currentUser.config = configResponse;
+              self.updateUser(self.currentUser, {set: true});
+            })
+            .error(function () {
+              console.log('Config loading error')
+            });
         },
 
         /**
@@ -46,6 +61,7 @@ angular.module('Simpleweek.services', [])
             Restangular.configuration.defaultRequestParams.common.access_token = userData['access_token'];
 
             self.updateUser(userData, {set: true});
+            self.loadUserConfig(userData['access_token']);
 
             deferred.resolve(self.currentUser);
           };
