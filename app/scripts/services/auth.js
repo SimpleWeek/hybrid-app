@@ -2,7 +2,7 @@
 
 angular.module('Simpleweek.services', [])
 
-  .service('AuthService', function($http, $rootScope, $q, $localStorage, ENV, Restangular) {
+  .service('AuthService', function($http, $rootScope, $q, $localStorage, $moment, ENV, Restangular) {
 
       var auth = {
         // the user currently logged in
@@ -38,6 +38,8 @@ angular.module('Simpleweek.services', [])
             .success(function (configResponse) {
               self.currentUser.config = configResponse;
               self.updateUser(self.currentUser, {set: true});
+
+              $moment.tz(configResponse.timezone.timezone_sysname);
             })
             .error(function () {
               console.log('Config loading error')
