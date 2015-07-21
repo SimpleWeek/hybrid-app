@@ -17,11 +17,25 @@
     <header class="bar bar-header bar-stable">
       <h1 class="title">Menu</h1>
     </header>
-    <ion-content class="has-header">
+    <ion-content scroll="false" class="has-header">
       <ion-list>
+        <ion-item ng-if="isLoggedIn()" class="custom-menu-item profile-item item item-complex" nav-clear menu-close >
+          <a class="item-content avatar-item-content" ng-href="#/app/tasks" target="_self">
+            <div class="author-icon-row">
+                <span style="border: 2px solid #b2b2b2; background-image:url({{currentUser.config.avatar}})"></span>
+            </div>
+            <div class="author-info centerBlock">
+
+            </div>
+          </a>
+        </ion-item>
         <ion-item ng-if="isLoggedIn()" nav-clear menu-close href="#/app/tasks">Tasks</ion-item>
-        <ion-item ng-if="isLoggedIn()" nav-clear menu-close ng-click="logout()">Logout</ion-item>
       </ion-list>
+      <div ng-if="isLoggedIn()" class="padding custom-menu-item menu-logout" nav-clear menu-close ng-click="logout()">
+        <a class="item-content">
+          SIGN OUT
+        </a>
+      </div>
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>

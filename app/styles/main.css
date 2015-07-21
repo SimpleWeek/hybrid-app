@@ -95,3 +95,223 @@
 .platform-ios.platform-cordova:not(.fullscreen) .has-week {
     top: 134px !important;
 }
+
+/**
+ * Complex Items
+ * --------------------------------------------------
+ * Adding .item-complex allows the .item to be slidable and
+ * have options underneath the button, but also requires an
+ * additional .item-content element inside .item.
+ * Basically .item-complex removes any default settings which
+ * .item added, so that .item-content looks them as just .item.
+ */
+.item-complex, a.item.item-complex, button.item.item-complex {
+  padding: 0; }
+
+.item-complex .item-content, .item-radio .item-content {
+  position: relative;
+  z-index: 2;
+  padding: 16px 49px 16px 16px;
+  border: none;
+  background-color: white; }
+
+a.item-content {
+  display: block;
+  color: inherit;
+  text-decoration: none; }
+
+.item-text-wrap .item, .item-text-wrap .item-content, .item-text-wrap, .item-text-wrap h1, .item-text-wrap h2, .item-text-wrap h3, .item-text-wrap h4, .item-text-wrap h5, .item-text-wrap h6, .item-text-wrap p, .item-complex.item-text-wrap .item-content, .item-body h1, .item-body h2, .item-body h3, .item-body h4, .item-body h5, .item-body h6, .item-body p {
+  overflow: visible;
+  white-space: normal; }
+
+.item-complex.item-text-wrap, .item-complex.item-text-wrap h1, .item-complex.item-text-wrap h2, .item-complex.item-text-wrap h3, .item-complex.item-text-wrap h4, .item-complex.item-text-wrap h5, .item-complex.item-text-wrap h6, .item-complex.item-text-wrap p {
+  overflow: visible;
+  white-space: normal; }
+
+.item-complex.item-light > .item-content {
+  border-color: #ddd;
+  background-color: #fff;
+  color: #444; }
+  .item-complex.item-light > .item-content.active, .item-complex.item-light > .item-content:active {
+    border-color: #ccc;
+    background-color: #fafafa; }
+.item-complex.item-stable > .item-content {
+  border-color: #b2b2b2;
+  background-color: #f8f8f8;
+  color: #444; }
+  .item-complex.item-stable > .item-content.active, .item-complex.item-stable > .item-content:active {
+    border-color: #a2a2a2;
+    background-color: #e5e5e5; }
+.item-complex.item-positive > .item-content {
+  border-color: #145fd7;
+  background-color: #4a87ee;
+  color: #fff; }
+  .item-complex.item-positive > .item-content.active, .item-complex.item-positive > .item-content:active {
+    border-color: #145fd7;
+    background-color: #145fd7; }
+.item-complex.item-calm > .item-content {
+  border-color: #1aacc3;
+  background-color: #43cee6;
+  color: #fff; }
+  .item-complex.item-calm > .item-content.active, .item-complex.item-calm > .item-content:active {
+    border-color: #1aacc3;
+    background-color: #1aacc3; }
+.item-complex.item-assertive > .item-content {
+  border-color: #cc2311;
+  background-color: #ef4e3a;
+  color: #fff; }
+  .item-complex.item-assertive > .item-content.active, .item-complex.item-assertive > .item-content:active {
+    border-color: #cc2311;
+    background-color: #cc2311; }
+.item-complex.item-balanced > .item-content {
+  border-color: #498f24;
+  background-color: #66cc33;
+  color: #fff; }
+  .item-complex.item-balanced > .item-content.active, .item-complex.item-balanced > .item-content:active {
+    border-color: #498f24;
+    background-color: #498f24; }
+.item-complex.item-energized > .item-content {
+  border-color: #d39211;
+  background-color: #f0b840;
+  color: #fff; }
+  .item-complex.item-energized > .item-content.active, .item-complex.item-energized > .item-content:active {
+    border-color: #d39211;
+    background-color: #d39211; }
+.item-complex.item-royal > .item-content {
+  border-color: #552bdf;
+  background-color: #8a6de9;
+  color: #fff; }
+  .item-complex.item-royal > .item-content.active, .item-complex.item-royal > .item-content:active {
+    border-color: #552bdf;
+    background-color: #552bdf; }
+.item-complex.item-dark > .item-content {
+  border-color: #111;
+  background-color: #444;
+  color: #fff; }
+  .item-complex.item-dark > .item-content.active, .item-complex.item-dark > .item-content:active {
+    border-color: #000;
+    background-color: #262626; }
+
+    /*
+      Sidebar
+    */
+    .custom-menu-item {
+      width: 100%;
+      margin: 0 auto;
+      background: transparent;
+      border: transparent;
+      letter-spacing: 0.25px;
+      text-align: center;
+      font-size: 16px; }
+      .custom-menu-item.profile-item {
+        /*background: #424458;*/
+        position: relative;
+        text-align: center;
+        border: none; }
+        .custom-menu-item.profile-item .author-info h1 {
+          font-size: 16px;
+          color: #fff;
+          letter-spacing: 1px; }
+      .custom-menu-item.settings-item:after {
+        content: "";
+        background: url('../img/settings-icon.png');
+        width: 14px;
+        height: 14px;
+        display: block;
+        background-repeat: no-repeat;
+        top: 50%;
+        position: absolute;
+        background-position: center;
+        margin: -7px 0 0 25%;
+        background-size: contain; }
+      .custom-menu-item.messages-item:after {
+        content: "";
+        background: url('../img/messages-icon.png');
+        width: 14px;
+        height: 14px;
+        display: block;
+        background-repeat: no-repeat;
+        top: 50%;
+        position: absolute;
+        background-position: center;
+        margin: -7px 0 0 25%;
+        background-size: contain; }
+      .custom-menu-item.users-item:after {
+        content: "";
+        background: url('../img/group_user-icon.png');
+        width: 25px;
+        height: 25px;
+        display: block;
+        background-repeat: no-repeat;
+        top: 50%;
+        position: absolute;
+        background-position: center;
+        margin: -13px 0 0 25%;
+        background-size: contain; }
+      .custom-menu-item.threads-item:after {
+        content: "";
+        background: url('../img/group.png');
+        width: 14px;
+        height: 14px;
+        display: block;
+        background-repeat: no-repeat;
+        top: 50%;
+        position: absolute;
+        background-position: center;
+        margin: -7px 0 0 25%;
+        background-size: contain; }
+      .custom-menu-item .item-content {
+        padding: 20px 15px 20px 15px;
+        background-color: transparent;
+        color: #fff;
+      }
+.custom-menu-item .item-content.avatar-item-content {padding: 0 15px 20px 15px;}
+.custom-menu-item .item-content.activated {
+    /*background: rgba(0, 0, 0, 0.5); */
+}
+
+    .menu-logout {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      color: #fff;
+      height: 80px; }
+      .menu-logout:after {
+        content: "";
+        background: url('../img/logout-icon.png');
+        width: 14px;
+        height: 14px;
+        display: block;
+        background-repeat: no-repeat;
+        top: 50%;
+        position: absolute;
+        background-position: center;
+        margin: -7px 0 0 25%;
+        background-size: contain; }
+      .menu-logout .item-content {
+        margin: 0 auto;
+        background: #ed7161;
+        height: 100%; }
+
+.author-icon-row {
+  position: relative;
+  margin-top: 3px;
+  margin-bottom: 126px;
+  background-color: #ffffff;
+  width: 100%; }
+
+.author-icon-row span {
+  display: inline-block;
+  border-radius: 50%;
+  width: 137px;
+  height: 137px;
+  border: 1px solid #e6e6e6;
+  position: absolute;
+  left: 50%;
+  margin-left: -68px;
+  background-position: center center;
+  background-size: cover; }
+
+.centerBlock {
+  margin: 0 auto;
+  max-width: 1024px; }
