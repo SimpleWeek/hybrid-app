@@ -5,6 +5,9 @@ angular.module('Simpleweek.controllers', [])
   .controller('AppController', function($scope, $state, $ionicHistory, AuthService, $ionicSideMenuDelegate) {
 
     $scope.currentUser = AuthService.currentUser;
+    $scope.$on('$ionicView.beforeEnter', function() {
+      $scope.currentUser = AuthService.currentUser;
+    });
 
     if (AuthService.isLoggedIn()) {
       $ionicHistory.nextViewOptions({disableBack: true});
