@@ -13,6 +13,7 @@ angular.module('Simpleweek', [
   'config',
   'Simpleweek.controllers',
   'Simpleweek.services',
+  'Simpleweek.filters',
   'angular-momentjs',
   'ngStorage',
   'restangular'

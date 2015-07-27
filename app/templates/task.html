@@ -1,5 +1,5 @@
 <ion-view title="Task">
   <ion-content class="has-header">
-    <h1>{{task.text}}</h1>
+    <h3 ng-bind-html="task.text | markdown"></h3>
   </ion-content>
 </ion-view>
