@@ -1,8 +1,8 @@
 'use strict';
-
+/*global Autolinker */
 angular.module('Simpleweek.services')
 
-  .factory('Micromarkdown', function (Restangular) {
+  .factory('Micromarkdown', function () {
     var micromarkdown = {
         useajax: false,
         regexobject: {
@@ -20,12 +20,8 @@ angular.module('Simpleweek.services')
             url: /<([a-zA-Z0-9@:%_\+.~#?&\/\/=]{2,256}\.[a-z]{2,4}\b(\/[\-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)?)>/g
         },
         parse: function (str, strict) {
-            'use strict';
-            var line, nstatus = 0,
-                status, cel, calign, indent, helper, helper1, helper2, count, repstr, stra, trashgc = [],
-                casca = 0,
+            var helper, helper1, repstr, stra, trashgc = [],
                 i = 0,
-                j = 0;
             str = this.htmlEncode(str);
 
             if (strict !== true) {
@@ -70,7 +66,7 @@ angular.module('Simpleweek.services')
                 str = str.replace(stra[0], '<a ' + micromarkdown.mmdCSSclass(repstr, strict) + 'href="' + repstr + '">' + repstr.replace(/(https:\/\/|http:\/\/|mailto:|ftp:\/\/)/gmi, '') + '</a>');
             }
             while ((stra = micromarkdown.regexobject.reflinks.exec(str)) !== null) {
-                helper1 = new RegExp('\\[' + stra[2] + '\\]: ?([^ \n]+)', "gi");
+                helper1 = new RegExp('\\[' + stra[2] + '\\]: ?([^ \n]+)', 'gi');
                 if ((helper = helper1.exec(str)) !== null) {
                     str = str.replace(stra[0], '<a ' + micromarkdown.mmdCSSclass(helper[1], strict) + 'href="' + helper[1] + '">' + stra[1] + '</a>');
                     trashgc.push(helper[0]);
@@ -85,11 +81,9 @@ angular.module('Simpleweek.services')
             return Autolinker.link(str, {stripPrefix: false, newWindow: false, email: false, phone: false, twitter: false, hashtag: false});
         },
         ajax: function (str) {
-            'use strict';
 
         },
         countingChars: function (str, split) {
-            'use strict';
             str = str.split(split);
             if (typeof str === 'object') {
                 return str.length - 1;
@@ -97,15 +91,13 @@ angular.module('Simpleweek.services')
             return 0;
         },
         htmlEncode: function (str) {
-            'use strict';
             var div = document.createElement('div');
             div.appendChild(document.createTextNode(str));
             str = div.innerHTML;
             div = undefined;
             return str;
         },
-        mmdCSSclass: function (str, strict) {
-            'use strict';
+        mmdCSSclass: function () {
             return '';
         }
     };

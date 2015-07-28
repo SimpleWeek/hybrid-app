@@ -25,7 +25,7 @@ angular.module('Simpleweek.services', [])
         isLoggedIn: function () {
           var self = this;
 
-          return this.currentUser['access_token'] ? this.currentUser['access_token'].length > 0 : false;
+          return this.currentUser.access_token ? this.currentUser.access_token.length > 0 : false;
         },
 
         /**
@@ -33,7 +33,7 @@ angular.module('Simpleweek.services', [])
          */
         loadUserConfig: function (token) {
           var self = this;
-          var url = ENV.api["baseUrl"] + '/api/users/me?access_token=' + token;
+          var url = ENV.api['baseUrl'] + '/api/users/me?access_token=' + token;
           $http.get(url)
             .success(function (configResponse) {
               self.currentUser.config = configResponse;
@@ -57,13 +57,13 @@ angular.module('Simpleweek.services', [])
           var deferred = $q.defer();
 
           var success = function (response) {
-            userData['access_token'] = response['access_token'];
-            userData['password'] = '';
+            userData.access_token = response.access_token;
+            userData.password = '';
 
-            Restangular.configuration.defaultRequestParams.common.access_token = userData['access_token'];
+            Restangular.configuration.defaultRequestParams.common.access_token = userData.access_token;
 
             self.updateUser(userData, {set: true});
-            self.loadUserConfig(userData['access_token']);
+            self.loadUserConfig(userData.access_token);
 
             deferred.resolve(self.currentUser);
           };
@@ -73,7 +73,7 @@ angular.module('Simpleweek.services', [])
             deferred.reject(error);
           };
 
-          var url = ENV.api["baseUrl"] + '/oauth/v2/token?client_id=' + ENV.api["client.id"] + '&client_secret=' + ENV.api["client.secret"] + '&grant_type=password&username=' + userData.username + '&password=' + userData.password;
+          var url = ENV.api.baseUrl + '/oauth/v2/token?client_id=' + ENV.api['client.id'] + '&client_secret=' + ENV.api['client.secret'] + '&grant_type=password&username=' + userData.username + '&password=' + userData.password;
           $http.get(url, {user: userData}).success(success).error(error);
 
           return deferred.promise;

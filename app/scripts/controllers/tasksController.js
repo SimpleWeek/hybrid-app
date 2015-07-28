@@ -5,7 +5,7 @@ angular.module('Simpleweek.controllers')
     $scope.tasks = [];
     $scope.env = ENV;
 
-    console.log('TasksController')
+    console.log('TasksController');
 
     $scope.weekDays = Todo.buildWeekDays();
 
