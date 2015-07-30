@@ -13,9 +13,9 @@ angular.module('Simpleweek.controllers')
     $scope.$on('$ionicView.beforeEnter', function() {
       console.log('$ionicView.beforeEnter');
       console.log('count($scope.tasks) == ', $scope.tasks.length);
-      if (0 == $scope.tasks.length) {
+      if (0 === $scope.tasks.length) {
         Todo.getForToday().then(function (tasks) {
-          console.log('Todo.getForToday().then callback')
+          console.log('Todo.getForToday().then callback');
           //  TODO  add if (0 == tasks.length) and cache = true
           // check that ios and android both load tasks or don't load
           $scope.tasks = tasks;
@@ -75,7 +75,7 @@ angular.module('Simpleweek.controllers')
 
     $scope.changeCompleted = function(task) {
       // todo move to Task resource constant
-      if (1 == task.status) {
+      if (1 === task.status) {
         task.status = 2;
       } else {
         task.status = 1;
@@ -88,7 +88,7 @@ angular.module('Simpleweek.controllers')
       $ionicLoading.show({template: 'Loading...'});
       _.each($scope.weekDays, function (day) {
         day.active = false;
-      })
+      });
       $scope.weekDays[$scope.weekDays.indexOf(weekDay)].active = true;
 
       Todo.getByDay(weekDay.date).then(function (tasks) {

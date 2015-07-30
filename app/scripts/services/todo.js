@@ -2,7 +2,7 @@
 
 angular.module('Simpleweek.services')
 
-  .factory('Todo', function (Restangular) {
+  .factory('Todo', function ($moment, Restangular) {
     var _todosService = Restangular.all('todos');
 
     return {
@@ -23,7 +23,7 @@ angular.module('Simpleweek.services')
         var momentObj;
 
         for (var i = 0; i < 5; i++) {
-          momentObj = moment().add(i, 'day');
+          momentObj = $moment().add(i, 'day');
 
           day = {
             title: momentObj.format('ddd').toUpperCase(),
@@ -37,5 +37,5 @@ angular.module('Simpleweek.services')
 
         return weekDays;
       }
-    }
+    };
   });
