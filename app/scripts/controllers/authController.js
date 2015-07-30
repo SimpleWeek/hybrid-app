@@ -2,7 +2,7 @@
 
 angular.module('Simpleweek.controllers')
 
-  .controller('AuthController', function ($scope, $stateParams, $ionicLoading, $state, $ionicHistory, AuthService) {
+  .controller('AuthController', function ($scope, $stateParams, $ionicLoading, $state, $ionicHistory, $ionicPopup, AuthService) {
 
     $scope.user = {};
 

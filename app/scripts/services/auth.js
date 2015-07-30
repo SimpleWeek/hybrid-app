@@ -33,7 +33,7 @@ angular.module('Simpleweek.services', [])
          */
         loadUserConfig: function (token) {
           var self = this;
-          var url = ENV.api['baseUrl'] + '/api/users/me?access_token=' + token;
+          var url = ENV.api.baseUrl + '/api/users/me?access_token=' + token;
           $http.get(url)
             .success(function (configResponse) {
               self.currentUser.config = configResponse;
@@ -127,7 +127,7 @@ angular.module('Simpleweek.services', [])
             deferred.reject(error);
           }
 
-          $http.post(ENV.api.baseUrl+'/users', {user: userData}).success(success).error(error);
+          $http.post(ENV.api.baseUrl+'/api/users', {user: userData}).success(success).error(error);
 
           return deferred.promise;
         },
