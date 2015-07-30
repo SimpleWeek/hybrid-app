@@ -30,7 +30,7 @@
   font-size: 16px;
 }
 
-.main-login-page .ion-person, .main-login-page .ion-locked {
+.main-login-page .icon, .main-signup-page .icon {
   font-size: 25px;
   color: #ddd;
   display: block;
@@ -55,11 +55,11 @@
   z-index: 2;
 }
 
-.main-login-page .button.button-signin, .main-login-page .button-signin.button, .signup-page .button.button-signin, .signup-page .button-signin.button {
+.main-login-page .button.button-signin, .main-login-page .button-signin.button, .signup-page .button.button-signin, .signup-page .button-signin.button,
+.main-signup-page .button
+ {
   text-align: center;
   margin-bottom: 15px;
-  border-top: 0;
-  border-bottom: 0;
 }
 
 .list {

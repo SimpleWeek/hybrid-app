@@ -103,7 +103,34 @@ angular.module('Simpleweek.services', [])
           if (opts.set === true) {
             $localStorage.appUser = self.currentUser;
           }
-        }
+        },
+
+        /**
+         * Register an user
+         * @param
+         */
+        register: function(userData){
+          var self = this;
+          var deferred = $q.defer();
+
+          var success = function(response, status, headers, config){
+              console.log("AuthService.register success callback");
+              console.log(response);
+
+            deferred.resolve(response.payload.user);
+          }
+
+          var error = function(error, status, headers, config){
+              console.log("AuthService.error callback function ");
+              console.log(error);
+
+            deferred.reject(error);
+          }
+
+          $http.post(ENV.api.baseUrl+'/users', {user: userData}).success(success).error(error);
+
+          return deferred.promise;
+        },
       };
 
       return auth;

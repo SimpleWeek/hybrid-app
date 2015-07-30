@@ -2,19 +2,23 @@
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
-  <ion-content class="has-header main-login-page">
+  <ion-content class="has-header signup-page main-signup-page content-bg">
     <div class="list">
       <label class="item item-input username">
-        <i class="ion-person"></i>
+        <i class="icon ion-person"></i>
         <input type="text" placeholder="Username" ng-model="user.username">
       </label>
+      <label class="item item-input email">
+        <i class="icon ion-ios-email"></i>
+        <input type="text" placeholder="Email" ng-model="user.email">
+      </label>
       <label class="item item-input lock">
-        <i class="ion-locked"></i>
+        <i class="icon ion-locked"></i>
         <input type="password" placeholder="Password" ng-model="user.password">
       </label>
     </div>
-    <button class="button button-full button-blue button-signin" ng-click="authenticateUser()">
-      SIGN IN
+    <button class="button button-block button-blue" ng-click="registerUser()">
+      SIGN UP
     </button>
   </ion-content>
 </ion-view>

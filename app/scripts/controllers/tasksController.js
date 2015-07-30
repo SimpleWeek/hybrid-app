@@ -6,6 +6,7 @@ angular.module('Simpleweek.controllers')
     $scope.env = ENV;
 
     console.log('TasksController');
+    // TODO click to linj on TASK page should open in another page
 
     $scope.weekDays = Todo.buildWeekDays();
 
