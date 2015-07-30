@@ -20,7 +20,11 @@ angular.module('Simpleweek.services')
             url: /<([a-zA-Z0-9@:%_\+.~#?&\/\/=]{2,256}\.[a-z]{2,4}\b(\/[\-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)?)>/g
         },
         parse: function (str, strict) {
-            var helper, helper1, repstr, stra, trashgc = [],
+            var helper,
+                helper1,
+                repstr,
+                stra,
+                trashgc = [],
                 i = 0,
             str = this.htmlEncode(str);
 
@@ -80,8 +84,7 @@ angular.module('Simpleweek.services')
 
             return Autolinker.link(str, {stripPrefix: false, newWindow: false, email: false, phone: false, twitter: false, hashtag: false});
         },
-        ajax: function (str) {
-
+        ajax: function () {
         },
         countingChars: function (str, split) {
             str = str.split(split);

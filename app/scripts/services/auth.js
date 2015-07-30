@@ -23,8 +23,6 @@ angular.module('Simpleweek.services', [])
          * @returns {boolean}
          */
         isLoggedIn: function () {
-          var self = this;
-
           return this.currentUser.access_token ? this.currentUser.access_token.length > 0 : false;
         },
 
@@ -42,7 +40,7 @@ angular.module('Simpleweek.services', [])
               $moment.tz(configResponse.timezone.timezone_sysname);
             })
             .error(function () {
-              console.log('Config loading error')
+              console.log('Config loading error');
             });
         },
 
@@ -114,14 +112,14 @@ angular.module('Simpleweek.services', [])
           var deferred = $q.defer();
 
           var success = function(response, status, headers, config){
-              console.log("AuthService.register success callback");
+              console.log('AuthService.register success callback');
               console.log(response);
 
-            deferred.resolve(response.payload.user);
+              deferred.resolve(response.payload.user);
           }
 
           var error = function(error, status, headers, config){
-              console.log("AuthService.error callback function ");
+              console.log('AuthService.error callback function');
               console.log(error);
 
             deferred.reject(error);

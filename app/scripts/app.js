@@ -48,16 +48,16 @@ angular.module('Simpleweek', [
 
       AuthService.init();
 
-      $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+      $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         if (toState.authenticate && !AuthService.isLoggedIn()) {
           // User isn’t authenticated
-          $state.transitionTo("app.signin");
+          $state.transitionTo('app.signin');
           event.preventDefault();
         }
       });
 
       Restangular.setBaseUrl(ENV.api.endpoint);
-      Restangular.setDefaultRequestParams({'access_token': AuthService.currentUser["access_token"]});
+      Restangular.setDefaultRequestParams({'access_token': AuthService.currentUser['access_token']});
 
       Restangular.setErrorInterceptor(function(resp) {
         console.log('error interceptor - ', resp);
@@ -65,13 +65,13 @@ angular.module('Simpleweek', [
         if (401 == resp.status) {
           AuthService.currentUser['access_token'] = null;
           $ionicHistory.nextViewOptions({disableBack: true});
-          $state.transitionTo("app.signin");
+          $state.transitionTo('app.signin');
         }
 
         return false; // stop the promise chain
       });
 
-      $ionicPlatform.on("resume", function(event) {
+      $ionicPlatform.on('resume', function(event) {
         if ($state.current.name == 'app.start') {
           $ionicHistory.nextViewOptions({disableBack: true});
           $state.go('app.tasks');
@@ -132,23 +132,23 @@ angular.module('Simpleweek', [
 
       // authentication page
       .state('app.signin', {
-        url: "/signin",
+        url: '/signin',
         cache: false,
         views: {
           'content': {
             controller: 'AuthController',
-            templateUrl: "templates/auth/signin.html"
+            templateUrl: 'templates/auth/signin.html'
           }
         },
         authenticate: false
       })
       .state('app.signup', {
-        url: "/signup",
+        url: '/signup',
         cache: false,
         views: {
           'content': {
             controller: 'AuthController',
-            templateUrl: "templates/auth/signup.html"
+            templateUrl: 'templates/auth/signup.html'
           }
         },
         authenticate: false
