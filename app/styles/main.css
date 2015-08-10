@@ -323,13 +323,13 @@ a.item-content {
 
 .form-error {
   padding: 2px 0 2px 0;
-  color: red;
+  color: #ed7161;
 }
 
 label.has-error {
-  border-color: red;
+  border-color: #ed7161;
 }
 
 label.has-error i {
-  color: red !important;
+  color: #ed7161 !important;
 }
