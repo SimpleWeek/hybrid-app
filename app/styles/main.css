@@ -314,4 +314,22 @@ a.item-content {
 
 .centerBlock {
   margin: 0 auto;
-  max-width: 1024px; }
+  max-width: 1024px;
+}
+
+.form-errors {
+  margin: 5px 0
+}
+
+.form-error {
+  padding: 2px 0 2px 0;
+  color: red;
+}
+
+label.has-error {
+  border-color: red;
+}
+
+label.has-error i {
+  color: red !important;
+}

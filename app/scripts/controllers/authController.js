@@ -2,9 +2,11 @@
 
 angular.module('Simpleweek.controllers')
 
-  .controller('AuthController', function ($scope, $stateParams, $ionicLoading, $state, $ionicHistory, $ionicPopup, AuthService) {
+  .controller('AuthController', function ($scope, $stateParams, $ionicLoading, $state, $ionicHistory, $ionicPopup, $timeout, AuthService) {
 
+    $scope.BAD_REQUEST = 400;
     $scope.user = {};
+    $scope.errorMessages = {};
 
     $scope.authenticateUser = function () {
       var success = function (response) {
@@ -24,43 +26,53 @@ angular.module('Simpleweek.controllers')
 
       // use AuthService to login
       AuthService.login($scope.user).then(success, error);
-    },
+    };
 
-    $scope.registerUser = function () {
-      var success = function(response){
-  				console.log("Registering user successful");
-  				console.log(response);
-  			$ionicLoading.hide();
-  			$scope.authenticateUser();
-  		}
+    $scope.registerUser = function (registrationForm) {
+      if (registrationForm.$dirty || registrationForm.$valid) {
+        var success = function(response) {
+          $ionicLoading.hide();
+          $scope.authenticateUser();
+        };
 
-  		var error = function(error) {
-  			$ionicLoading.hide();
-  			console.log(error);
-  			$scope.error = error;
+        var error = function(errorResponse) {
+          $ionicLoading.hide();
 
-  			var errorPopup = $ionicPopup.show({
-  		    	templateUrl: 'templates/modal/error.html',
-  		    	title: 'Error',
-  		    	scope: $scope,
-  		    	buttons: [
-  		       		{ text: 'Ok' }
-  		    	]
-  		   	});
+          if (errorResponse.code && $scope.BAD_REQUEST === errorResponse.code) {
+            var validateField = function(apiFieldName, $scope, errorResponse, formField) {
+              formField = formField || apiFieldName;
+              var errors = errorResponse.errors.children[apiFieldName].errors;
+              var isValidField = ! (errors && errors.length > 0);
+              registrationForm[formField].$setValidity('server', isValidField);
 
-  		   errorPopup.then(function(res) {
-           console.log('popup ok Tapped!', res);
-  		   });
+              if (! isValidField) {
+                $scope.errorMessages[formField] = errors.join(' ');
+              }
+            };
 
-  		   $timeout(function() {
-  		      errorPopup.close(); //close the popup after 3 seconds for some reason
-  		   }, 3000);
-  		}
+            validateField('username', $scope, errorResponse);
+            validateField('email', $scope, errorResponse);
+            validateField('plainPassword', $scope, errorResponse, 'password');
 
-  		$ionicLoading.show({
-        template: 'Loading...'
-   		});
+          } else {
+            var errorPopup = $ionicPopup.show({
+              templateUrl: 'templates/modal/error.html',
+              title: 'Error',
+              scope: $scope,
+              buttons: [
+                { text: 'Ok' }
+              ]
+            });
+          }
+        };
 
-  		AuthService.register($scope.user).then(success,error);
+        $ionicLoading.show({
+          template: 'Loading...'
+        });
+
+        AuthService.register($scope.user).then(success, error);
+      } else {
+        // form is invalid
+      }
     }
   });

@@ -113,9 +113,7 @@ angular.module('Simpleweek.services', [])
 
         var success = function (response, status, headers, config) {
           console.log('AuthService.register success callback');
-          console.log(response);
-
-          deferred.resolve(response.payload.user);
+          deferred.resolve(response);
         };
 
         var error = function (error, status, headers, config) {
@@ -125,7 +123,15 @@ angular.module('Simpleweek.services', [])
           deferred.reject(error);
         };
 
-        $http.post(ENV.api.baseUrl + '/api/users', {user: userData}).success(success).error(error);
+        var postData = {
+          "todo_user_registration": {
+            "email": userData.email,
+            "username": userData.username,
+            "plainPassword": userData.password
+          }
+        };
+
+        $http.post(ENV.api.baseUrl + '/api/users.json', postData).success(success).error(error);
 
         return deferred.promise;
       }
