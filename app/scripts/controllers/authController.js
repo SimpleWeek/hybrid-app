@@ -7,8 +7,13 @@ angular.module('Simpleweek.controllers')
     $scope.BAD_REQUEST = 400;
     $scope.user = {};
     $scope.errorMessages = {};
+    $scope.loginError = 'Username or password is incorrect';
 
-    $scope.authenticateUser = function () {
+    /**
+     * Log in user
+     * @param loginForm
+     */
+    $scope.authenticateUser = function (loginForm) {
       var success = function (response) {
         $ionicLoading.hide();
         $ionicHistory.nextViewOptions({disableBack: true});
@@ -16,18 +21,22 @@ angular.module('Simpleweek.controllers')
         $state.go('app.tasks');
       };
 
-      var error = function(response) {
+      var error = function(errorResponse) {
         $ionicLoading.hide();
-        alert('error');
-        // TODO add form validation (red errors)
+        if (errorResponse.code && $scope.BAD_REQUEST === errorResponse.code && 'invalid_grant' === errorResponse.error.error) {
+          loginForm.password.$setValidity('server', false);
+        }
       };
 
       $ionicLoading.show({template: 'Loading...'});
 
-      // use AuthService to login
       AuthService.login($scope.user).then(success, error);
     };
 
+    /**
+     * Register a new user
+     * @param registrationForm
+     */
     $scope.registerUser = function (registrationForm) {
       if (registrationForm.$dirty || registrationForm.$valid) {
         var success = function(response) {

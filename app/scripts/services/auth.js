@@ -67,8 +67,7 @@ angular.module('Simpleweek.services', [])
         };
 
         var error = function (error, status) {
-          console.log('error');
-          deferred.reject(error);
+          deferred.reject({error: error, code: status});
         };
 
         var url = ENV.api.baseUrl + '/oauth/v2/token?client_id=' + ENV.api['client.id'] + '&client_secret=' + ENV.api['client.secret'] + '&grant_type=password&username=' + userData.username + '&password=' + userData.password;
