@@ -2,11 +2,12 @@
 
 angular.module('Simpleweek.controllers', [])
 
-  .controller('AppController', function($scope, $state, $ionicHistory, AuthService, $ionicSideMenuDelegate) {
+  .controller('AppController', function($scope, $state, $ionicHistory, $ionicSideMenuDelegate, $localStorage, AuthService) {
 
-    $scope.currentUser = AuthService.currentUser;
+    $scope.currentUser = $localStorage.appUser || AuthService.currentUser;
+
     $scope.$on('$ionicView.beforeEnter', function() {
-      $scope.currentUser = AuthService.currentUser;
+      $scope.currentUser = $localStorage.appUser || AuthService.currentUser;
     });
 
     if (AuthService.isLoggedIn()) {
