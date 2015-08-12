@@ -71,11 +71,17 @@ angular.module('Simpleweek', [
         return false; // stop the promise chain
       });
 
-      $ionicPlatform.on('resume', function(event) {
+      var goToTasksFromStartView = function($state, $ionicHistory) {
         if ($state.current.name == 'app.start') {
           $ionicHistory.nextViewOptions({disableBack: true});
           $state.go('app.tasks');
         }
+      };
+
+      goToTasksFromStartView($state, $ionicHistory);
+
+      $ionicPlatform.on('resume', function(event) {
+        goToTasksFromStartView($state, $ionicHistory);
       });
     });
   })
