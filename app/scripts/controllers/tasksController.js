@@ -11,13 +11,8 @@ angular.module('Simpleweek.controllers')
     $scope.weekDays = Todo.buildWeekDays();
 
     $scope.$on('$ionicView.beforeEnter', function() {
-      console.log('$ionicView.beforeEnter');
-      console.log('count($scope.tasks) == ', $scope.tasks.length);
       if (0 === $scope.tasks.length) {
         Todo.getForToday().then(function (tasks) {
-          console.log('Todo.getForToday().then callback');
-          //  TODO  add if (0 == tasks.length) and cache = true
-          // check that ios and android both load tasks or don't load
           $scope.tasks = tasks;
         });
       }
