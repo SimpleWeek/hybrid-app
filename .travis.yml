@@ -11,7 +11,7 @@ before_script:
   - npm install -g codeclimate-test-reporter
 
 after_script:
-  - cat coverage/lcov.info | codeclimate
+  - codeclimate-test-reporter < lcov.info
 
 addons:
   code_climate:
