@@ -10,6 +10,7 @@ var db;
 // 'starter.controllers' is found in controllers.js
 angular.module('Simpleweek', [
   'ionic',
+  'ngCordova',
   'config',
   'Simpleweek.controllers',
   'Simpleweek.services',
