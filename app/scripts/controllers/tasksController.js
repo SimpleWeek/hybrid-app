@@ -1,9 +1,10 @@
 'use strict';
 angular.module('Simpleweek.controllers')
 
-  .controller('TasksController', function ($scope, $http, $moment, $ionicPopup, $ionicLoading, ENV, AuthService, Todo) {
+  .controller('TasksController', function ($scope, $http, $moment, $ionicPopup, $ionicLoading, $ionicModal, ENV, AuthService, Todo) {
     $scope.tasks = [];
     $scope.env = ENV;
+    $scope.newTask = {};
 
     $scope.weekDays = Todo.buildWeekDays();
 
@@ -16,33 +17,45 @@ angular.module('Simpleweek.controllers')
       $scope.weekDays = Todo.buildWeekDays();
     });
 
+    $ionicModal.fromTemplateUrl('templates/modal/createTask.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+      $scope.modal.remove();
+    });
+
     $scope.update = function (task) {
       task.put();
     };
 
-    $scope.create = function() {
+    $scope.saveFromModal = function(taskForm) {
       // TODO fetch config from server to get timezone, save in localstorage. Use it fot startDate
-      $ionicPopup.prompt({
-        title: 'Enter a new task text',
-        inputType: 'text'
-      })
-      .then(function(result) {
-        if(result !== undefined && result.length > 0) {
-          // create
-          var newTask = {
-            text: result,
-            recurring: 0,
-            description: 'from mobile',
-            permanent: 0,
-            position: 10,
-            startDate: $moment()
-          };
+      if (taskForm.$valid) {
+        // create
+        $scope.newTask.recurring = 0;
+        $scope.newTask.permanent = 0;
+        $scope.newTask.position = 10;
+        $scope.newTask.startDate = $moment();
+        $scope.newTask.description = 'from mobile';
 
-          Todo.post(newTask).then(function(restangularTask) {
-            $scope.tasks.push(restangularTask);
-          });
-        }
-      });
+        Todo.post($scope.newTask).then(function(restangularTask) {
+          $scope.tasks.push(restangularTask);
+        });
+
+        $scope.newTask = {};
+        taskForm.$setPristine();
+
+        $scope.modal.hide();
+      }
+    };
+
+    $scope.create = function() {
+      $scope.modal.show();
     };
 
     $scope.remove = function(task) {

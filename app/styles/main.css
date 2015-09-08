@@ -336,3 +336,137 @@ label.has-error {
 label.has-error i {
   color: #ed7161 !important;
 }
+
+.new-task-form label.has-error {
+    border-color: #ddd;
+}
+
+.new-task-form label.has-error span.input-label {
+  color: #ed7161;
+}
+
+/** start modal create task bar **/
+.custom-bar .title{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    margin: 0 10px;
+    min-width: 30px;
+    height: 59px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 17px;
+    line-height: 60px;
+}
+
+.custom-bar .title {
+    height: 45px;
+    line-height: 45px;
+    font-size: 20px;
+    color: #49799a;
+    right: 0 !important;
+    left: 0 !important;
+}
+
+.custom-bar .buttons.right-buttons {
+    display: inherit;
+}
+
+.custom-bar .buttons.left-buttons {
+    display: inherit;
+}
+
+
+.custom-bar .title + .buttons {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+}
+
+.custom-bar .button.button-green, .custom-bar .button-green.button {
+    border-color: transparent;
+    background-color: #88c057;
+    color: #fff;
+    background-image: none;
+    /*#648f3f*/
+}
+.custom-bar .button.button-green:hover, .custom-bar .button-green.button:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.custom-bar .button.button-green.active, .custom-bar .button-green.active.button, .custom-bar .button.button-green.activated, .custom-bar .button-green.activated.button {
+    border-color: transparent;
+    background-color: lime;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+.custom-bar .button.button-red, .custom-bar .button-red.button {
+    border-color: transparent;
+    background-color: #dc6263;
+    color: #fff;
+    background-image: none;
+}
+.custom-bar .button.button-red:hover, .custom-bar .button-red.button:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.custom-bar .button.button-red.active, .custom-bar .button-red.active.button, .custom-bar .button.button-red.activated, .custom-bar .button-red.activated.button {
+    border-color: transparent;
+    background-color: red;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+.custom-bar .buttons.right-buttons button {
+    top: -5px;
+    right: -5px;
+    height: 45px;
+    border-radius: 0px;
+    width: 45px;
+}
+.custom-bar .buttons.left-buttons button {
+    top: -5px;
+    left: -5px;
+    height: 45px;
+    border-radius: 0px;
+    width: 45px;
+}
+.custom-bar .button:after {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    bottom: -6px;
+    left: -6px;
+    content: ' ';
+}
+.custom-bar .buttons.right-buttons button.button-save:after {
+    content: "";
+    background: url('./img/check-mark.png');
+    width: 20px;
+    height: 20px;
+    display: block;
+    background-repeat: no-repeat;
+    top: 13px;
+    position: absolute;
+    background-position: center;
+    margin: 0 0 0 9%;
+    background-size: contain;
+    left: 9px;
+}
+.custom-bar .buttons.left-buttons button.button-cancel:after {
+    content: "";
+    background: url('./img/x-mark.png');
+    width: 20px;
+    height: 20px;
+    display: block;
+    background-repeat: no-repeat;
+    top: 13px;
+    position: absolute;
+    background-position: center;
+    margin: 0 0 0 9%;
+    background-size: contain;
+    left: 7px;
+}
+/** end modal create task bar **/

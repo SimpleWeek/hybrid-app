@@ -84,8 +84,12 @@ module.exports = function (grunt) {
         tasks: ['newer:copy:app', 'newer:jshint:all']
       },
       styles: {
-        files: ['<%= yeoman.app %>/<%= yeoman.styles %>/**/*.css'],
+        files: ['<%= yeoman.app %>/<%= yeoman.styles %>/**/*.css)'],
         tasks: ['newer:copy:styles', 'autoprefixer', 'newer:copy:tmp']
+      },
+      images: {
+        files: ['<%= yeoman.app %>/<%= yeoman.styles %>/**/*.png)'],
+        tasks: ['newer:copy:app', 'newer:copy:tmp']
       },
       gruntfile: {
         files: ['Gruntfile.js'],

@@ -1,0 +1,23 @@
+<ion-modal-view>
+  <form name="taskForm" class="new-task-form" novalidate>
+    <ion-header-bar class="custom-bar">
+      <h1 class="title">Create new task</h1>
+      <div class="buttons right-buttons">
+       <button type="button" side="right" class="button button-green button-save" ng-click="saveFromModal(taskForm)"></button>
+      </div>
+      <div class="buttons left-buttons">
+       <button type="button" class="button button-red button-cancel" ng-click="modal.hide()">
+       </button>
+      </div>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list">
+        <label ng-class="{'has-error': (taskForm.$submitted || taskForm.text.$dirty) && taskForm.text.$invalid}" class="item item-input item-stacked-label">
+          <span class="input-label">Text </span>
+          <span ng-if="(taskForm.$submitted || taskForm.text.$dirty) && taskForm.text.$invalid" class="input-label">This value should not be blank</span>
+          <input type="text" placeholder="Task's text" ng-model="newTask.text" name="text" required>
+        </label>
+      </div>
+    </ion-content>
+  </form>
+</ion-modal-view>
