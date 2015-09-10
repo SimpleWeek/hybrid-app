@@ -17,6 +17,22 @@
           <span ng-if="(taskForm.$submitted || taskForm.text.$dirty) && taskForm.text.$invalid" class="input-label">This value should not be blank</span>
           <input type="text" placeholder="Task's text" ng-model="newTask.text" name="text" required>
         </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Date </span>
+          <ionic-datepicker input-obj="datepickerObject">
+            <button type="button" style="visibility: hidden;"></button>
+          </ionic-datepicker>
+          <input type="text" value="{{newTask.startDate.toDate() | date:'MMMM dd, yyyy'}}">
+          <input type="hidden" ng-model="newTask.startDate" name="startDate" required>
+          <!-- <pre>
+            submitted: {{taskForm.$submitted}}
+            form valid: {{taskForm.$valid}}
+            form dirty: {{taskForm.$dirty}}
+            form pristine: {{taskForm.$pristine}}
+            StartDate valid: {{taskForm.startDate.$valid}}
+            newTask.startDate: {{newTask.startDate.toDate() | date:'MMMM dd, yyyy'}}
+          </pre> -->
+        </label>
       </div>
     </ion-content>
   </form>

@@ -59,5 +59,9 @@
     "https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git",
     "https://github.com/katzer/cordova-plugin-local-notifications.git",
     "cordova-plugin-whitelist"
+  ],
+  "cordovaPlatforms": [
+    "android",
+    "ios"
   ]
 }

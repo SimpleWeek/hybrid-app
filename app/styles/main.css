@@ -347,20 +347,21 @@ label.has-error i {
 
 /** start modal create task bar **/
 .custom-bar .title{
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 0;
-    overflow: hidden;
-    margin: 0 10px;
-    min-width: 30px;
-    height: 59px;
-    text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 17px;
-    line-height: 60px;
+  text-align: center !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+  margin: 0 10px;
+  min-width: 30px;
+  height: 59px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 17px;
+  line-height: 60px;
 }
 
 .custom-bar .title {
