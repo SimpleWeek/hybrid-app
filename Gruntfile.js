@@ -353,6 +353,7 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/bower_components/lodash/dist/lodash.compat.js',
           '<%= yeoman.app %>/bower_components/restangular/dist/restangular.js',
           '<%= yeoman.app %>/bower_components/Autolinker.js/dist/Autolinker.js',
+          '<%= yeoman.app %>/bower_components/ionic-datepicker/dist/ionic-datepicker.bundle.min.js',
           '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
           'test/mock/**/*.js',
           'test/spec/**/*.js'
