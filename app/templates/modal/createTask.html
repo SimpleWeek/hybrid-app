@@ -17,6 +17,19 @@
           <span ng-if="(taskForm.$submitted || taskForm.text.$dirty) && taskForm.text.$invalid" class="input-label">This value should not be blank</span>
           <input type="text" placeholder="Task's text" ng-model="newTask.text" name="text" required>
         </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Repeat
+          </div>
+          <select ng-model="newTask.frequency">
+            <option value="" selected>Never</option>
+            <option value="1">Daily</option>
+            <option value="2">Each 2 days</option>
+            <option value="3">Weekly</option>
+            <option value="5">Monthly</option>
+            <option value="6">Yearly</option>
+          </select>
+        </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Date </span>
           <ionic-datepicker input-obj="datepickerObject">

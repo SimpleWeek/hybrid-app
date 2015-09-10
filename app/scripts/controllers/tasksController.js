@@ -10,22 +10,14 @@ angular.module('Simpleweek.controllers')
 
     $scope.datepickerObject = {
       titleLabel: 'Select a Date',  //Optional
-      todayLabel: 'Today',  //Optional
-      closeLabel: 'Close',  //Optional
-      setLabel: 'Set',  //Optional
       setButtonType : 'button-assertive',  //Optional
       todayButtonType : 'button-assertive',  //Optional
       closeButtonType : 'button-assertive',  //Optional
-      inputDate: new Date(),    //Optional
-      mondayFirst: true,    //Optional
       templateType: 'popup', //Optional
       from: new Date(),   //Optional
       callback: function (val) {    //Mandatory
-        if (typeof(val) === 'undefined') {
-          console.log('No date selected');
-        } else {
+        if (typeof(val) !== 'undefined') {
           $scope.newTask.startDate = $moment(val);
-          console.log('Selected date is : ', val)
         }
       }
     };
@@ -59,7 +51,7 @@ angular.module('Simpleweek.controllers')
       taskForm.$setSubmitted();
       if (taskForm.$valid) {
         // create
-        $scope.newTask.recurring = 0;
+        $scope.newTask.recurring = $scope.newTask.frequency > 0 ? 1 : 0;
         $scope.newTask.permanent = 0;
         $scope.newTask.position = 10;
         $scope.newTask.description = 'from mobile';
