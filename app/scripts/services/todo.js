@@ -29,6 +29,7 @@ angular.module('Simpleweek.services')
             title: momentObj.format('ddd').toUpperCase(),
             number: momentObj.format('DD'),
             date: momentObj.format('YYYY-MM-DD'),
+            dateMoment: momentObj,
             active: 0 === i
           };
 

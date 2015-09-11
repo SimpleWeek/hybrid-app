@@ -25,11 +25,19 @@
                 <span style="border: 2px solid #b2b2b2; background-image:url({{currentUser.config.avatar}})"></span>
             </div>
             <div class="author-info centerBlock">
-
+              <h1>{{currentUser.config.username}}</h1>
             </div>
           </a>
         </ion-item>
-        <ion-item ng-if="isLoggedIn()" nav-clear menu-close href="#/app/tasks">Tasks</ion-item>
+        <ion-item ng-if="isLoggedIn()" nav-clear menu-close href="#/app/tasks" class="item-icon-left">
+          <i class="icon ion-ios-list-outline"></i>Tasks
+        </ion-item>
+        <ion-item ng-if="isLoggedIn()" nav-clear menu-close href="#/app/settings" class="item-icon-left">
+          <i class="icon ion-ios-gear-outline"></i>Settings
+        </ion-item>
+        <ion-item ng-if="isLoggedIn()" nav-clear menu-close href="#/app/stats" class="item-icon-left">
+          <i class="icon ion-ios-pulse"></i>Stats
+        </ion-item>
       </ion-list>
       <div ng-if="isLoggedIn()" class="padding custom-menu-item menu-logout" nav-clear menu-close ng-click="logout()">
         <a class="item-content ion-power">

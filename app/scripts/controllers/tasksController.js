@@ -5,7 +5,7 @@ angular.module('Simpleweek.controllers')
     $scope.tasks = [];
     $scope.env = ENV;
     $scope.newTask = {};
-
+    $scope.currentDate = $moment();
     $scope.weekDays = Todo.buildWeekDays();
 
     $scope.datepickerObject = {
@@ -56,9 +56,13 @@ angular.module('Simpleweek.controllers')
         $scope.newTask.position = 10;
         $scope.newTask.description = 'from mobile';
 
+        var newTask = $scope.newTask;
+
         Todo.post($scope.newTask).then(function(restangularTask) {
-          // TODO push only if it created for today newTask.startDate == new Date()
-          $scope.tasks.push(restangularTask);
+          // push to today's tasks array only if task created for today
+          if ($scope.currentDate.format('YYYY-MM-DD') === newTask.startDate.format('YYYY-MM-DD')) {
+            $scope.tasks.push(restangularTask);
+          }
         });
 
         $scope.newTask = {};
@@ -109,7 +113,10 @@ angular.module('Simpleweek.controllers')
       _.each($scope.weekDays, function (day) {
         day.active = false;
       });
-      $scope.weekDays[$scope.weekDays.indexOf(weekDay)].active = true;
+
+      var currentWeekDay = $scope.weekDays[$scope.weekDays.indexOf(weekDay)];
+      currentWeekDay.active = true;
+      $scope.currentDate = currentWeekDay.dateMoment;
 
       Todo.getByDay(weekDay.date).then(function (tasks) {
         $ionicLoading.hide();

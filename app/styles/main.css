@@ -213,7 +213,6 @@ a.item-content {
         border: none; }
         .custom-menu-item.profile-item .author-info h1 {
           font-size: 16px;
-          color: #fff;
           letter-spacing: 1px; }
       .custom-menu-item.settings-item:after {
         content: "";
@@ -268,7 +267,7 @@ a.item-content {
         background-color: transparent;
         color: #fff;
       }
-.custom-menu-item .item-content.avatar-item-content {padding: 0 15px 20px 15px;}
+.custom-menu-item .item-content.avatar-item-content {padding: 0 15px 10px 15px;}
 .custom-menu-item .item-content.activated {
     /*background: rgba(0, 0, 0, 0.5); */
 }
@@ -316,6 +315,7 @@ a.item-content {
   background-size: cover; }
 
 .centerBlock {
+  padding-top: 16px;
   margin: 0 auto;
   max-width: 1024px;
 }
