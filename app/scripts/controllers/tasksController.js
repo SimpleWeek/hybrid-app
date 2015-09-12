@@ -13,7 +13,7 @@ angular.module('Simpleweek.controllers')
       setButtonType : 'button-assertive',  //Optional
       todayButtonType : 'button-assertive',  //Optional
       closeButtonType : 'button-assertive',  //Optional
-      templateType: 'popup', //Optional
+      templateType: 'modal', //Optional
       from: new Date(),   //Optional
       callback: function (val) {    //Mandatory
         if (typeof(val) !== 'undefined') {
