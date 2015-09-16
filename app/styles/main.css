@@ -471,3 +471,9 @@ label.has-error i {
     left: 7px;
 }
 /** end modal create task bar **/
+.sw-md-btn {
+  background-color: #27925c !important;
+  line-height: 49px !important;
+  width: 50px !important;
+  height: 50px !important;
+}
