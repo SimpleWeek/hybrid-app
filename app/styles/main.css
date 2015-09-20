@@ -292,7 +292,7 @@ a.item-content {
         background-size: contain; }
       .menu-logout .item-content {
         margin: 0 auto;
-        background: #ed7161;
+        background: #27925C;
         height: 100%; }
 
 .author-icon-row {
@@ -471,6 +471,12 @@ label.has-error i {
     left: 7px;
 }
 /** end modal create task bar **/
+.sw-md-btn {
+  background-color: #27925c !important;
+  line-height: 49px !important;
+  width: 50px !important;
+  height: 50px !important;
+}
 .bar.bar-balanced {
   background-color: #27925C;
 }
