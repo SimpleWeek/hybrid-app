@@ -471,3 +471,6 @@ label.has-error i {
     left: 7px;
 }
 /** end modal create task bar **/
+.bar.bar-balanced {
+  background-color: #27925C;
+}
