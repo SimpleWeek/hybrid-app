@@ -354,9 +354,9 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/bower_components/restangular/dist/restangular.js',
           '<%= yeoman.app %>/bower_components/Autolinker.js/dist/Autolinker.js',
           '<%= yeoman.app %>/bower_components/ionic-datepicker/dist/ionic-datepicker.bundle.min.js',
-          'bower_components/angular-aria/angular-aria.js',
-          'bower_components/angular-material/angular-material.js',
-          'bower_components/hammerjs/hammer.js',
+          '<%= yeoman.app %>/bower_components/angular-aria/angular-aria.js',
+          '<%= yeoman.app %>/bower_components/angular-material/angular-material.js',
+          '<%= yeoman.app %>/bower_components/hammerjs/hammer.js',
           '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
           'test/mock/**/*.js',
           'test/spec/**/*.js'
