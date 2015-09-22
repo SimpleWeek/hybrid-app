@@ -23,7 +23,7 @@ angular.module('Simpleweek.controllers', [])
         $ionicSideMenuDelegate.toggleLeft();
       }
 
-      $state.go('app.start')
+      $state.go('app.start');
     };
 
     $scope.isLoggedIn = function() {
@@ -32,5 +32,5 @@ angular.module('Simpleweek.controllers', [])
 
     $scope.navigateTo = function(state) {
       return $state.go(state);
-    }
+    };
   });

@@ -18,6 +18,7 @@ angular.module('Simpleweek', [
   'Simpleweek.services',
   'Simpleweek.filters',
   'Simpleweek.directives',
+  'Simpleweek.validators',
   'angular-momentjs',
   'ngStorage',
   'restangular'
@@ -70,6 +71,8 @@ angular.module('Simpleweek', [
           AuthService.currentUser['access_token'] = null;
           $ionicHistory.nextViewOptions({disableBack: true});
           $state.transitionTo('app.signin');
+        } else if (400 === resp.status) {
+          return true;
         }
 
         return false; // stop the promise chain
@@ -112,6 +115,18 @@ angular.module('Simpleweek', [
           }
         },
         authenticate: false
+      })
+
+      .state('app.profile', {
+        cache: true,
+        url: '/profile',
+        views: {
+          'content': {
+            templateUrl: 'templates/profile.html',
+            controller: 'ProfileController'
+          }
+        },
+        authenticate: true
       })
 
       .state('app.tasks', {

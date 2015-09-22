@@ -2,8 +2,7 @@
 
 angular.module('Simpleweek.controllers')
 
-  .controller('AuthController', function ($scope, $stateParams, $ionicLoading, $state, $ionicHistory, $ionicPopup, $timeout, AuthService) {
-
+  .controller('AuthController', function ($scope, $stateParams, $ionicLoading, $state, $ionicHistory, $ionicPopup, $timeout, AuthService, ServerValidator) {
     $scope.BAD_REQUEST = 400;
     $scope.user = {};
     $scope.errorMessages = {};
@@ -14,7 +13,7 @@ angular.module('Simpleweek.controllers')
      * @param loginForm
      */
     $scope.authenticateUser = function (loginForm) {
-      var success = function (response) {
+      var success = function () {
         $ionicLoading.hide();
         $ionicHistory.nextViewOptions({disableBack: true});
 
@@ -39,7 +38,7 @@ angular.module('Simpleweek.controllers')
      */
     $scope.registerUser = function (registrationForm) {
       if (registrationForm.$dirty || registrationForm.$valid) {
-        var success = function(response) {
+        var success = function() {
           $ionicLoading.hide();
           $scope.authenticateUser();
         };
@@ -48,30 +47,9 @@ angular.module('Simpleweek.controllers')
           $ionicLoading.hide();
 
           if (errorResponse.code && $scope.BAD_REQUEST === errorResponse.code) {
-            var validateField = function(apiFieldName, $scope, errorResponse, formField) {
-              formField = formField || apiFieldName;
-              var errors = errorResponse.errors.children[apiFieldName].errors;
-              var isValidField = ! (errors && errors.length > 0);
-              registrationForm[formField].$setValidity('server', isValidField);
-
-              if (! isValidField) {
-                $scope.errorMessages[formField] = errors.join(' ');
-              }
-            };
-
-            validateField('username', $scope, errorResponse);
-            validateField('email', $scope, errorResponse);
-            validateField('plainPassword', $scope, errorResponse, 'password');
-
-          } else {
-            var errorPopup = $ionicPopup.show({
-              templateUrl: 'templates/modal/error.html',
-              title: 'Error',
-              scope: $scope,
-              buttons: [
-                { text: 'Ok' }
-              ]
-            });
+            ServerValidator.validateField('username', $scope, registrationForm, errorResponse);
+            ServerValidator.validateField('email', $scope, registrationForm, errorResponse);
+            ServerValidator.validateField('plainPassword', $scope, registrationForm, errorResponse, 'password');
           }
         };
 
@@ -83,5 +61,5 @@ angular.module('Simpleweek.controllers')
       } else {
         // form is invalid
       }
-    }
+    };
   });

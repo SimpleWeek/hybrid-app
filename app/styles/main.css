@@ -337,11 +337,11 @@ label.has-error i {
   color: #ed7161 !important;
 }
 
-.new-task-form label.has-error {
+.new-task-form label.has-error, .profile-form label.has-error {
     border-color: #ddd;
 }
 
-.new-task-form label.has-error span.input-label {
+.new-task-form label.has-error span.input-label, .profile-form label.has-error span.input-label {
   color: #ed7161;
 }
 
@@ -480,3 +480,8 @@ label.has-error i {
 .bar.bar-balanced {
   background-color: #27925C;
 }
+/** Profile */
+.sw-profile-save::before {
+  font-size: 56px !important;
+}
+/** end Profile */

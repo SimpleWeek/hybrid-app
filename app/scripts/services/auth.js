@@ -111,14 +111,10 @@ angular.module('Simpleweek.services', [])
         var deferred = $q.defer();
 
         var success = function (response, status, headers, config) {
-          console.log('AuthService.register success callback');
           deferred.resolve(response);
         };
 
         var error = function (error, status, headers, config) {
-          console.log('AuthService.error callback function');
-          console.log(error);
-
           deferred.reject(error);
         };
 
