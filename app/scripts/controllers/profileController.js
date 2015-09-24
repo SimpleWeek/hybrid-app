@@ -10,6 +10,7 @@ angular.module('Simpleweek.controllers')
         email: AuthService.currentUser.config.email,
         username: AuthService.currentUser.config.username
       };
+      setServerValidityAndPristine();
     });
 
     $scope.save = function(profileForm) {
@@ -19,9 +20,7 @@ angular.module('Simpleweek.controllers')
         var success = function(response) {
           $ionicLoading.hide();
           $scope.errorMessages = {};
-          profileForm.username.$setValidity('server', true);
-          profileForm.email.$setValidity('server', true);
-          profileForm.$setPristine();
+          setServerValidityAndPristine();
 
           AuthService.currentUser.config = response.plain();
           AuthService.updateUser(AuthService.currentUser, {set: true});
@@ -45,4 +44,10 @@ angular.module('Simpleweek.controllers')
         User.post({profile: $scope.profile}).then(success, error);
       }
     };
+
+    function setServerValidityAndPristine() {
+      $scope.profileForm.username.$setValidity('server', true);
+      $scope.profileForm.email.$setValidity('server', true);
+      $scope.profileForm.$setPristine();
+    }
   });

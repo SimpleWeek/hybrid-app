@@ -19,8 +19,8 @@
     </header>
     <ion-content scroll="false" class="has-header">
       <ion-list>
-        <ion-item ng-if="isLoggedIn()" class="custom-menu-item profile-item item item-complex" nav-clear menu-close >
-          <a class="item-content avatar-item-content" ng-href="#/app/profile" target="_self">
+        <ion-item ng-if="isLoggedIn()" class="custom-menu-item profile-item item item-complex" menu-close >
+          <a class="item-content avatar-item-content" ui-sref="app.profile" target="_self">
             <div class="author-icon-row">
                 <span style="border: 2px solid #b2b2b2; background-image:url({{currentUser.config.avatar}})"></span>
             </div>
@@ -29,13 +29,13 @@
             </div>
           </a>
         </ion-item>
-        <ion-item ng-if="isLoggedIn()" nav-clear menu-close href="#/app/tasks" class="item-icon-left">
+        <ion-item ng-if="isLoggedIn()" menu-close ui-sref="app.tasks" class="item-icon-left">
           <i class="icon ion-ios-list-outline"></i>Tasks
         </ion-item>
-        <ion-item ng-if="isLoggedIn()" nav-clear menu-close href="#/app/settings" class="item-icon-left">
+        <ion-item ng-if="isLoggedIn()" menu-close ui-sref="app.settings" class="item-icon-left">
           <i class="icon ion-ios-gear-outline"></i>Settings
         </ion-item>
-        <ion-item ng-if="isLoggedIn()" nav-clear menu-close href="#/app/stats" class="item-icon-left">
+        <ion-item ng-if="isLoggedIn()" menu-close ui-sref="app.stats" class="item-icon-left">
           <i class="icon ion-ios-pulse"></i>Stats
         </ion-item>
       </ion-list>
