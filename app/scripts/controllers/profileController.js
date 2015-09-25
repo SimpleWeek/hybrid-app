@@ -1,14 +1,22 @@
 'use strict';
 angular.module('Simpleweek.controllers')
 
-  .controller('ProfileController', function ($scope, $stateParams, $ionicLoading, $moment, AuthService, ServerValidator, User) {
-    $scope.profile = {};
+  .controller('ProfileController', function ($scope, $stateParams, $ionicLoading, $moment, AuthService, ServerValidator, User, Timezone) {
     $scope.errorMessages = {};
+    $scope.timezones = [];
+    $scope.profile = {};
 
     $scope.$on('$ionicView.beforeEnter', function() {
+      if (0 === $scope.timezones.length) {
+        Timezone.getList().then(function(timezones) {
+          $scope.timezones = timezones.plain();
+        });
+      }
+
       $scope.profile = {
         email: AuthService.currentUser.config.email,
-        username: AuthService.currentUser.config.username
+        username: AuthService.currentUser.config.username,
+        timezoneId: AuthService.currentUser.config.timezone.id
       };
       setServerValidityAndPristine();
     });

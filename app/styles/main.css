@@ -345,6 +345,8 @@ label.has-error i {
   color: #ed7161;
 }
 
+.profile-form select.timezone-dropdown {max-width: 75% !important;}
+
 /** start modal create task bar **/
 .custom-bar .title{
   text-align: center !important;

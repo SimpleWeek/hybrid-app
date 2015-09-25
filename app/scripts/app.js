@@ -1,6 +1,5 @@
 'use strict';
 
-var db;
 // Ionic Starter App, v0.9.20
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -67,7 +66,7 @@ angular.module('Simpleweek', [
       Restangular.setErrorInterceptor(function(resp) {
         console.log('error interceptor - ', resp);
 
-        if (401 == resp.status) {
+        if (401 === resp.status) {
           AuthService.currentUser['access_token'] = null;
           $ionicHistory.nextViewOptions({disableBack: true});
           $state.transitionTo('app.signin');
@@ -79,7 +78,7 @@ angular.module('Simpleweek', [
       });
 
       var goToTasksFromStartView = function($state, $ionicHistory) {
-        if ($state.current.name == 'app.start') {
+        if ($state.current.name === 'app.start') {
           $ionicHistory.nextViewOptions({disableBack: true});
           $state.go('app.tasks');
         }

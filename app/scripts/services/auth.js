@@ -107,22 +107,21 @@ angular.module('Simpleweek.services', [])
        * @param
        */
       register: function (userData) {
-        var self = this;
         var deferred = $q.defer();
 
-        var success = function (response, status, headers, config) {
+        var success = function (response) {
           deferred.resolve(response);
         };
 
-        var error = function (error, status, headers, config) {
+        var error = function (error) {
           deferred.reject(error);
         };
 
         var postData = {
-          "todo_user_registration": {
-            "email": userData.email,
-            "username": userData.username,
-            "plainPassword": userData.password
+          'todo_user_registration': {
+            'email': userData.email,
+            'username': userData.username,
+            'plainPassword': userData.password
           }
         };
 

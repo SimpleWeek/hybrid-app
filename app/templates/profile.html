@@ -18,7 +18,17 @@
           <span ng-if="(profileForm.$submitted || profileForm.email.$dirty) && profileForm.email.$invalid" class="input-label">{{errorMessages.email}}</span>
           <input type="text" placeholder="test@example.com" ng-model="profile.email" name="email" required>
         </label>
-        <!-- TODO add timezone dropdown -->
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Timezone
+          </div>
+          <select class="timezone-dropdown"
+            name="timezone"
+            ng-model="profile.timezoneId"
+            ng-options="tz.id as tz.timezone_user_string for tz in timezones"
+            >
+          </select>
+        </label>
           <!-- <pre>
             submitted: {{profileForm.$submitted}}
             form valid: {{profileForm.$valid}}
