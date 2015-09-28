@@ -21,9 +21,14 @@ CLIENT_SECRET  | 5na7xb8cjc0084w80s4s8gckcs8c4ooc0ks0w0g8okwwkgsk88
 
 `grunt serve`
 
-# Running application with simulator
+# Running application with iOS simulator
 
 `grunt emulate:ios -l -c --target="iPhone-5s"`
+
+# Watch logs os iOS simulators
+
+`tail -f ~/Library/Logs/CoreSimulator/%SIMULATOR_NAME%/system.log`
+
 
 List of available images:
 `./platforms/ios/cordova/lib/list-emulator-images`

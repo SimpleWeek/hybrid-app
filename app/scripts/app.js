@@ -50,6 +50,8 @@ angular.module('Simpleweek', [
         StatusBar.styleDefault();
       }
 
+      screen.lockOrientation('portrait');
+
       AuthService.init();
 
       $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
