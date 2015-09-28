@@ -6,7 +6,17 @@
     <ion-nav-buttons side="right">
       <button ng-disabled="! profileForm.$dirty || (profileForm.$submitted && profileForm.$valid)" type="button" class="right button button-icon icon ion-ios-checkmark-empty sw-profile-save" ng-click="save(profileForm)"></button>
     </ion-nav-buttons>
-    <ion-content class="has-header">
+    <ion-content class="has-header profile-page">
+      <div class="profile-img-wrapper edit-profile" style="background-image: url('images/bg_new2.jpg');">
+        <div class="avatar-section">
+          <div class="content">
+              <div class="avatar-icon">
+                <div class="avatar-img" style="background-image: url('{{currentUser.config.avatar}}');">
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
       <div class="list">
         <label ng-class="{'has-error': (profileForm.$submitted || profileForm.username.$dirty) && profileForm.username.$invalid}" class="item item-input item-stacked-label">
           <span class="input-label">Username </span>

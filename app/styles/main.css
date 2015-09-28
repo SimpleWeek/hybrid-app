@@ -446,7 +446,7 @@ label.has-error i {
 }
 .custom-bar .buttons.right-buttons button.button-save:after {
     content: "";
-    background: url('./img/check-mark.png');
+    background: url('../images/check-mark.png');
     width: 20px;
     height: 20px;
     display: block;
@@ -460,7 +460,7 @@ label.has-error i {
 }
 .custom-bar .buttons.left-buttons button.button-cancel:after {
     content: "";
-    background: url('./img/x-mark.png');
+    background: url('../images/x-mark.png');
     width: 20px;
     height: 20px;
     display: block;
@@ -486,4 +486,71 @@ label.has-error i {
 .sw-profile-save::before {
   font-size: 56px !important;
 }
+.profile-page .profile-img-wrapper {
+    height: 100%;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #07b9d9; }
+    .profile-page .profile-img-wrapper.edit-profile {
+      height: inherit; }
+      .profile-page .profile-img-wrapper.edit-profile .avatar-section {
+        padding: 0; }
+        .profile-page .profile-img-wrapper.edit-profile .avatar-section .content .avatar-icon {
+          min-height: 170px; }
+    .profile-page .profile-img-wrapper:before {
+      content: '\a';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      z-index: 0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: #000000;
+      opacity: 0.4; }
+    .profile-page .profile-img-wrapper .avatar-section {
+      width: 100%;
+      display: table;
+      text-align: center;
+      margin: 0px auto;
+      padding: 0 0 25px 0;
+      vertical-align: middle;
+      height: inherit;
+      position: relative;
+      z-index: 2; }
+      .profile-page .profile-img-wrapper .avatar-section.avatar-bio-section:after {
+        position: absolute;
+        top: 0px;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        content: '';
+        background: rgba(0, 0, 0, 0.5); }
+      .profile-page .profile-img-wrapper .avatar-section .content {
+        display: table-cell;
+        vertical-align: middle;
+        width: 100%; }
+        .profile-page .profile-img-wrapper .avatar-section .content .avatar-icon {
+          padding: 6% 0 0 0;
+          position: relative; }
+          .profile-page .profile-img-wrapper .avatar-section .content .avatar-icon .avatar-img {
+            display: inline-block;
+            width: 126px;
+            height: 126px;
+            border-radius: 50%;
+            border-width: 2px;
+            border-style: solid;
+            border-color: #fff;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #f3f3f3;
+            position: relative;
+            z-index: 2; }
 /** end Profile */

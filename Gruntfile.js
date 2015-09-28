@@ -88,7 +88,7 @@ module.exports = function (grunt) {
         tasks: ['newer:copy:styles', 'autoprefixer', 'newer:copy:tmp']
       },
       images: {
-        files: ['<%= yeoman.app %>/<%= yeoman.styles %>/**/*.png)'],
+        files: ['<%= yeoman.app %>/<%= yeoman.styles %>/**/*.(png|jpg))'],
         tasks: ['newer:copy:app', 'newer:copy:tmp']
       },
       gruntfile: {
