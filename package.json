@@ -58,7 +58,8 @@
     "org.apache.cordova.splashscreen",
     "https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git",
     "https://github.com/katzer/cordova-plugin-local-notifications.git",
-    "cordova-plugin-whitelist"
+    "cordova-plugin-whitelist",
+    "https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git"
   ],
   "cordovaPlatforms": [
     "android",
