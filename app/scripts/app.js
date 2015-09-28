@@ -50,7 +50,9 @@ angular.module('Simpleweek', [
         StatusBar.styleDefault();
       }
 
-      screen.lockOrientation('portrait');
+      if (window.screen) {
+        window.screen.lockOrientation('portrait');
+      }
 
       AuthService.init();
 
