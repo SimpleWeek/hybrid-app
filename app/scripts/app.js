@@ -23,7 +23,7 @@ angular.module('Simpleweek', [
   'restangular'
 ])
 
-  .run(function ($ionicPlatform, $ionicPopup, $rootScope, $ionicLoading, $state, $ionicHistory, AuthService, Restangular, ENV) {
+  .run(function ($ionicPlatform, $ionicPopup, $rootScope, $ionicLoading, $state, $ionicHistory, $http, AuthService, Restangular, ENV) {
     $ionicPlatform.ready(function () {
 
       if (window.Connection) {
@@ -53,6 +53,8 @@ angular.module('Simpleweek', [
       if (window.screen && window.screen.lockOrientation) {
         window.screen.lockOrientation('portrait');
       }
+
+      $http.defaults.headers.common['X-SW-MOBILE'] = '1';
 
       AuthService.init();
 
@@ -98,7 +100,10 @@ angular.module('Simpleweek', [
   .config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
 
     // DELETE request by default is sent with text/plain, so explicitly set to json
-    RestangularProvider.setDefaultHeaders({'Content-Type': 'application/json'});
+    RestangularProvider.setDefaultHeaders({
+      'Content-Type': 'application/json',
+      'X-SW-MOBILE': '1'
+    });
 
     $stateProvider
       .state('app', {
