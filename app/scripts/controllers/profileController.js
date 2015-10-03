@@ -1,10 +1,11 @@
 'use strict';
 angular.module('Simpleweek.controllers')
 
-  .controller('ProfileController', function ($scope, $stateParams, $ionicLoading, $moment, AuthService, ServerValidator, User, Timezone) {
+  .controller('ProfileController', function ($scope, $stateParams, $ionicLoading, $moment, $ionicContentBanner, $timeout, AuthService, ServerValidator, User, Timezone) {
     $scope.errorMessages = {};
     $scope.timezones = [];
     $scope.profile = {};
+    var contentBannerCloseCallback;
 
     $scope.$on('$ionicView.beforeEnter', function() {
       if (0 === $scope.timezones.length) {
@@ -27,7 +28,6 @@ angular.module('Simpleweek.controllers')
       if (profileForm.$dirty || profileForm.$valid) {
         var success = function(response) {
           $ionicLoading.hide();
-          $scope.errorMessages = {};
           setServerValidityAndPristine();
 
           AuthService.currentUser.config = response.plain();
@@ -40,8 +40,19 @@ angular.module('Simpleweek.controllers')
           $ionicLoading.hide();
 
           if (response.status && 400 === response.status) {
-            ServerValidator.validateField('username', $scope, profileForm, errorResponse);
-            ServerValidator.validateField('email', $scope, profileForm, errorResponse);
+            var errors = [
+              ServerValidator.validateField('username', $scope, profileForm, errorResponse, errors),
+              ServerValidator.validateField('email', $scope, profileForm, errorResponse, errors)
+            ];
+
+            var isError = function (value) {
+              return !!value;
+            }
+
+            contentBannerCloseCallback = $ionicContentBanner.show({
+              type: 'error',
+              text: errors.filter(isError)
+            });
           }
         };
 
@@ -49,6 +60,7 @@ angular.module('Simpleweek.controllers')
           template: 'Loading...'
         });
 
+        contentBannerCloseCallback && contentBannerCloseCallback();
         User.post({profile: $scope.profile}).then(success, error);
       }
     };

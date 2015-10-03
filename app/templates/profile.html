@@ -20,12 +20,10 @@
       <div class="list">
         <label ng-class="{'has-error': (profileForm.$submitted || profileForm.username.$dirty) && profileForm.username.$invalid}" class="item item-input item-stacked-label">
           <span class="input-label">Username </span>
-          <span ng-if="(profileForm.$submitted || profileForm.username.$dirty) && profileForm.username.$invalid" class="input-label">{{errorMessages.username}}</span>
           <input type="text" placeholder="John Doe" ng-model="profile.username" name="username" required>
         </label>
         <label ng-class="{'has-error': (profileForm.$submitted || profileForm.email.$dirty) && profileForm.email.$invalid}" class="item item-input item-stacked-label">
           <span class="input-label">Email </span>
-          <span ng-if="(profileForm.$submitted || profileForm.email.$dirty) && profileForm.email.$invalid" class="input-label">{{errorMessages.email}}</span>
           <input type="text" placeholder="test@example.com" ng-model="profile.email" name="email" required>
         </label>
         <label class="item item-input item-select">
