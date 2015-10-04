@@ -2,11 +2,12 @@
 
 angular.module('Simpleweek.controllers')
 
-  .controller('AuthController', function ($scope, $stateParams, $ionicLoading, $state, $ionicHistory, $ionicPopup, $timeout, AuthService, ServerValidator) {
+  .controller('AuthController', function ($scope, $stateParams, $ionicLoading, $state, $ionicHistory, $ionicPopup, $timeout, $ionicContentBanner, AuthService, ServerValidator) {
     $scope.BAD_REQUEST = 400;
     $scope.user = {};
     $scope.errorMessages = {};
     $scope.loginError = 'Username or password is incorrect';
+    var contentBannerCloseCallback;
 
     /**
      * Log in user
@@ -23,12 +24,17 @@ angular.module('Simpleweek.controllers')
       var error = function(errorResponse) {
         $ionicLoading.hide();
         if (errorResponse.code && $scope.BAD_REQUEST === errorResponse.code && 'invalid_grant' === errorResponse.error.error) {
+          contentBannerCloseCallback = $ionicContentBanner.show({
+            type: 'error',
+            text: [$scope.loginError],
+            showCloseButton: false
+          });
           loginForm.password.$setValidity('server', false);
         }
       };
 
       $ionicLoading.show({template: 'Loading...'});
-
+      contentBannerCloseCallback && contentBannerCloseCallback();
       AuthService.login($scope.user).then(success, error);
     };
 

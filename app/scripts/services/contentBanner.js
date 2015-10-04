@@ -64,7 +64,8 @@ angular.module('Simpleweek.services')
           type: 'info',
           $deregisterBackButton: angular.noop,
           closeOnStateChange: true,
-          autoClose: null
+          autoClose: null,
+          showCloseButton: true
         }, opts);
 
         // Compile the template

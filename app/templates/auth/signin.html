@@ -13,9 +13,6 @@
           <i class="icon ion-locked"></i>
           <input type="password" placeholder="Password" ng-model="user.password" name="password">
         </label>
-        <div ng-show="loginForm.password.$error.server" class="form-errors">
-          <div class="form-error" ng-show="loginForm.password.$error.server">{{loginError}}</div>
-        </div>
       </div>
       <button class="button button-block button-blue button-signin" ng-click="authenticateUser(loginForm)">
         SIGN IN
