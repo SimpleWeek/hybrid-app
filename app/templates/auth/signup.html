@@ -9,25 +9,14 @@
           <i class="icon ion-person"></i>
           <input type="text" placeholder="Username" ng-model="user.username" name="username" required>
         </label>
-        <div ng-show="registrationForm.username.$error.server && errorMessages.username" class="form-errors">
-          <div class="form-error" ng-show="registrationForm.username.$error.server && errorMessages.username">{{errorMessages.username}}</div>
-        </div>
         <label class="item item-input email" ng-class="{'has-error': registrationForm.email.$error.server && errorMessages.email}">
           <i class="icon ion-ios-email"></i>
           <input type="email" placeholder="Email" ng-model="user.email" name="email" required>
         </label>
-        <div ng-show="registrationForm.email.$error.server && errorMessages.email" class="form-errors">
-            <div class="form-error" ng-show="registrationForm.email.$error.server && errorMessages.email">{{errorMessages.email}}</div>
-            <!--<div class="form-error" ng-show="registrationForm.email.$error.required">Tell us your email.</div>-->
-            <!--<div class="form-error" ng-show="registrationForm.email.$error.email">This is not a valid email.</div>-->
-        </div>
         <label class="item item-input lock" ng-class="{'has-error': registrationForm.password.$error.server && errorMessages.password}">
           <i class="icon ion-locked"></i>
           <input type="password" placeholder="Password" ng-model="user.password" name="password" required>
         </label>
-        <div ng-show="registrationForm.password.$error.server && errorMessages.password" class="form-errors">
-          <div class="form-error" ng-show="registrationForm.password.$error.server && errorMessages.password">{{errorMessages.password}}</div>
-        </div>
       </div>
       <button type="submit" class="button button-block button-blue" ng-click="registerUser(registrationForm)">
         SIGN UP

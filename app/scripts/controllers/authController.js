@@ -35,6 +35,7 @@ angular.module('Simpleweek.controllers')
 
       $ionicLoading.show({template: 'Loading...'});
       contentBannerCloseCallback && contentBannerCloseCallback();
+
       AuthService.login($scope.user).then(success, error);
     };
 
@@ -53,12 +54,26 @@ angular.module('Simpleweek.controllers')
           $ionicLoading.hide();
 
           if (errorResponse.code && $scope.BAD_REQUEST === errorResponse.code) {
-            ServerValidator.validateField('username', $scope, registrationForm, errorResponse);
-            ServerValidator.validateField('email', $scope, registrationForm, errorResponse);
-            ServerValidator.validateField('plainPassword', $scope, registrationForm, errorResponse, 'password');
+            var errors = [
+              ServerValidator.validateField('username', $scope, registrationForm, errorResponse),
+              ServerValidator.validateField('email', $scope, registrationForm, errorResponse),
+              ServerValidator.validateField('plainPassword', $scope, registrationForm, errorResponse, 'password'),
+            ];
+
+            var isError = function (value) {
+              return !!value;
+            }
+
+            contentBannerCloseCallback = $ionicContentBanner.show({
+              type: 'error',
+              text: errors.filter(isError),
+              showCloseButton: false
+            });
+
           }
         };
 
+        contentBannerCloseCallback && contentBannerCloseCallback();
         $ionicLoading.show({
           template: 'Loading...'
         });
