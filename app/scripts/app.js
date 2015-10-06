@@ -84,7 +84,7 @@ angular.module('Simpleweek', [
       });
 
       var goToTasksFromStartView = function($state, $ionicHistory) {
-        if ($state.current.name === 'app.start') {
+        if ($state.current.name === 'public.start') {
           $ionicHistory.nextViewOptions({disableBack: true});
           $state.go('app.tasks');
         }
