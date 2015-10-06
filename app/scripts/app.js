@@ -61,7 +61,7 @@ angular.module('Simpleweek', [
       $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         if (toState.authenticate && !AuthService.isLoggedIn()) {
           // User isn’t authenticated
-          $state.transitionTo('app.signin');
+          $state.transitionTo('public.signin');
           event.preventDefault();
         }
       });
@@ -75,7 +75,7 @@ angular.module('Simpleweek', [
         if (401 === resp.status) {
           AuthService.currentUser['access_token'] = null;
           $ionicHistory.nextViewOptions({disableBack: true});
-          $state.transitionTo('app.signin');
+          $state.transitionTo('public.signin');
         } else if (400 === resp.status) {
           return true;
         }
@@ -112,8 +112,18 @@ angular.module('Simpleweek', [
         templateUrl: 'templates/menu.html',
         controller: 'AppController'
       })
+      .state('public', {
+        url: '/public',
+        abstract: true,
+        views: {
+          '@': {
+            templateUrl: 'templates/public.html',
+            controller: 'AppController'
+          }
+        }
+      })
 
-      .state('app.start', {
+      .state('public.start', {
         url: '/start',
         cache: false,
         views: {
@@ -164,7 +174,7 @@ angular.module('Simpleweek', [
       })
 
       // authentication page
-      .state('app.signin', {
+      .state('public.signin', {
         url: '/signin',
         cache: false,
         views: {
@@ -175,7 +185,7 @@ angular.module('Simpleweek', [
         },
         authenticate: false
       })
-      .state('app.signup', {
+      .state('public.signup', {
         url: '/signup',
         cache: false,
         views: {
@@ -188,5 +198,5 @@ angular.module('Simpleweek', [
       });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/start');
+    $urlRouterProvider.otherwise('/public/start');
   });

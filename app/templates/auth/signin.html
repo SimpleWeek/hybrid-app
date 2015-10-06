@@ -1,14 +1,14 @@
 <ion-view title="Sign In">
-  <ion-content class="has-header main-login-page" scroll="false">
+  <ion-content class="has-header main-login-page content-bg" scroll="false">
     <form name="loginForm" novalidate>
       <div class="list">
         <label class="item item-input username" ng-class="{'has-error': loginForm.password.$error.server}">
           <i class="icon ion-person"></i>
-          <input type="text" placeholder="Username or email" ng-model="user.username" name="username">
+          <input class="auth-input" type="text" placeholder="Username or email" ng-model="user.username" name="username">
         </label>
         <label class="item item-input lock" ng-class="{'has-error': loginForm.password.$error.server}">
           <i class="icon ion-locked"></i>
-          <input type="password" placeholder="Password" ng-model="user.password" name="password">
+          <input class="auth-input" type="password" placeholder="Password" ng-model="user.password" name="password">
         </label>
       </div>
       <button type="button" class="button button-block button-blue button-signin" ng-click="authenticateUser(loginForm)">

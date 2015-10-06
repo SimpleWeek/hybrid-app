@@ -35,7 +35,7 @@
 
 .main-login-page .icon, .main-signup-page .icon {
   font-size: 25px;
-  color: #ddd;
+  color: #fff;
   display: block;
   position: absolute;
   background-position: center;
@@ -612,14 +612,14 @@ label.has-error i {
     background-repeat: no-repeat;
     background-position: center;
     background-color: transparent;
-    background-image: url('../images/logo_sign_green.png');
+    background-image: url('../images/logo_sign_white.png');
     height: 35%;
     margin: 12% auto 25px auto;
     position: relative;
     z-index: 2; }
   .main-page .slogan {
     text-align: center;
-    color: #444;
+    color: #fff;
     font-weight: 400;
     line-height: 21px;
     margin: 50px auto;
@@ -628,4 +628,35 @@ label.has-error i {
     font-size: 16px;
     position: relative;
     z-index: 2; }
+.public-view .content-bg {
+  background-color: #27925C;
+}
+.public-view .content-bg .button {
+  border-color: #fff;
+  background-color: #27925C;
+  color: #fff;
+}
+.public-view .content-bg .item input {
+  color: #fff;
+}
+.public-view .content-bg label.has-error {
+    border-color: #F5432C !important;
+}
+.public-view .content-bg label.has-error i{
+  color: #F5432C !important;
+}
+.auth-input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #fff !important;
+}
+.auth-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #fff !important;
+   opacity:  1;
+}
+.auth-input::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #fff !important;
+   opacity:  1;
+}
+.auth-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #fff !important;
+}
 /** end of main page **/

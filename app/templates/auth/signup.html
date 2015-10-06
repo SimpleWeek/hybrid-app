@@ -4,15 +4,15 @@
       <div class="list">
         <label class="item item-input username" ng-class="{'has-error': registrationForm.username.$error.server && errorMessages.username}">
           <i class="icon ion-person"></i>
-          <input type="text" placeholder="Username" ng-model="user.username" name="username" required>
+          <input class="auth-input" type="text" placeholder="Username" ng-model="user.username" name="username" required>
         </label>
         <label class="item item-input email" ng-class="{'has-error': registrationForm.email.$error.server && errorMessages.email}">
           <i class="icon ion-ios-email"></i>
-          <input type="email" placeholder="Email" ng-model="user.email" name="email" required>
+          <input class="auth-input" type="email" placeholder="Email" ng-model="user.email" name="email" required>
         </label>
         <label class="item item-input lock" ng-class="{'has-error': registrationForm.password.$error.server && errorMessages.password}">
           <i class="icon ion-locked"></i>
-          <input type="password" placeholder="Password" ng-model="user.password" name="password" required>
+          <input class="auth-input" type="password" placeholder="Password" ng-model="user.password" name="password" required>
         </label>
       </div>
       <button type="button" class="button button-block button-blue" ng-click="registerUser(registrationForm)">
