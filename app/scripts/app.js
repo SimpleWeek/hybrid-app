@@ -61,7 +61,7 @@ angular.module('Simpleweek', [
       $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         if (toState.authenticate && !AuthService.isLoggedIn()) {
           // User isn’t authenticated
-          $state.transitionTo('public.signin');
+          $state.transitionTo('public.start');
           event.preventDefault();
         }
       });
