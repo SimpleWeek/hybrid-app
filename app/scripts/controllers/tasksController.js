@@ -13,6 +13,8 @@ angular.module('Simpleweek.controllers')
       setButtonType : 'button-assertive',  //Optional
       todayButtonType : 'button-assertive',  //Optional
       closeButtonType : 'button-assertive',  //Optional
+      modalHeaderColor: 'bar-balanced',
+      modalFooterColor: 'bar-balanced',
       templateType: 'modal', //Optional
       from: new Date(),   //Optional
       callback: function (val) {    //Mandatory

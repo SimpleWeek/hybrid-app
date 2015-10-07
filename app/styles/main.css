@@ -661,3 +661,9 @@ label.has-error i {
    color:    #fff !important;
 }
 /** end of main page **/
+.date_selected {
+    background-color: rgb(39, 146, 92) !important;
+}
+.date_selected .pointer_events_none {
+  color: #fff !important;
+}
