@@ -23,7 +23,7 @@ angular.module('Simpleweek', [
   'restangular'
 ])
 
-  .run(function ($ionicPlatform, $ionicPopup, $rootScope, $ionicLoading, $state, $ionicHistory, $http, AuthService, Restangular, ENV) {
+  .run(function ($ionicPlatform, $ionicPopup, $rootScope, $state, $ionicHistory, $http, AuthService, Restangular, ENV) {
     $ionicPlatform.ready(function () {
 
       if (window.Connection) {

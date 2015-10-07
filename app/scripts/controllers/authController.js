@@ -2,7 +2,7 @@
 
 angular.module('Simpleweek.controllers')
 
-  .controller('AuthController', function ($scope, $stateParams, $ionicLoading, $state, $ionicHistory, $ionicPopup, $timeout, $ionicContentBanner, AuthService, ServerValidator) {
+  .controller('AuthController', function ($scope, $stateParams, $state, $ionicHistory, $ionicPopup, $timeout, $ionicContentBanner, swLoading, AuthService, ServerValidator) {
     $scope.BAD_REQUEST = 400;
     $scope.user = {};
     $scope.errorMessages = {};
@@ -15,14 +15,14 @@ angular.module('Simpleweek.controllers')
      */
     $scope.authenticateUser = function (loginForm) {
       var success = function () {
-        $ionicLoading.hide();
+        swLoading.hide();
         $ionicHistory.nextViewOptions({disableBack: true});
 
         $state.go('app.tasks');
       };
 
       var error = function(errorResponse) {
-        $ionicLoading.hide();
+        swLoading.hide();
         if (errorResponse.code && $scope.BAD_REQUEST === errorResponse.code && 'invalid_grant' === errorResponse.error.error) {
           contentBannerCloseCallback = $ionicContentBanner.show({
             type: 'error',
@@ -33,7 +33,7 @@ angular.module('Simpleweek.controllers')
         }
       };
 
-      $ionicLoading.show({template: 'Loading...'});
+      swLoading.show();
       contentBannerCloseCallback && contentBannerCloseCallback();
 
       AuthService.login($scope.user).then(success, error);
@@ -46,12 +46,12 @@ angular.module('Simpleweek.controllers')
     $scope.registerUser = function (registrationForm) {
       if (registrationForm.$dirty || registrationForm.$valid) {
         var success = function() {
-          $ionicLoading.hide();
+          swLoading.hide();
           $scope.authenticateUser();
         };
 
         var error = function(errorResponse) {
-          $ionicLoading.hide();
+          swLoading.hide();
 
           if (errorResponse.code && $scope.BAD_REQUEST === errorResponse.code) {
             var errors = [
@@ -74,9 +74,7 @@ angular.module('Simpleweek.controllers')
         };
 
         contentBannerCloseCallback && contentBannerCloseCallback();
-        $ionicLoading.show({
-          template: 'Loading...'
-        });
+        swLoading.show();
 
         AuthService.register($scope.user).then(success, error);
       } else {

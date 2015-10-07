@@ -1,7 +1,7 @@
 'use strict';
 angular.module('Simpleweek.controllers')
 
-  .controller('TasksController', function ($scope, $http, $moment, $ionicPopup, $ionicLoading, $ionicModal, ENV, AuthService, Todo) {
+  .controller('TasksController', function ($scope, $http, $moment, $ionicPopup, $ionicModal, swLoading, ENV, AuthService, Todo) {
     $scope.tasks = [];
     $scope.env = ENV;
     $scope.newTask = {};
@@ -78,10 +78,10 @@ angular.module('Simpleweek.controllers')
     };
 
     $scope.remove = function(task) {
-      $ionicLoading.show({template: 'Loading...'});
+      swLoading.show();
 
       task.remove().then(function() {
-        $ionicLoading.hide();
+        swLoading.hide();
         $scope.tasks.splice($scope.tasks.indexOf(task), 1);
       });
     };
@@ -109,7 +109,7 @@ angular.module('Simpleweek.controllers')
     };
 
     $scope.chooseWeekDay = function(weekDay) {
-      $ionicLoading.show({template: 'Loading...'});
+      swLoading.show();
       _.each($scope.weekDays, function (day) {
         day.active = false;
       });
@@ -119,7 +119,7 @@ angular.module('Simpleweek.controllers')
       $scope.currentDate = currentWeekDay.dateMoment;
 
       Todo.getByDay(weekDay.date).then(function (tasks) {
-        $ionicLoading.hide();
+        swLoading.hide();
         $scope.tasks = tasks;
       });
     };

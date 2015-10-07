@@ -1,7 +1,7 @@
 'use strict';
 angular.module('Simpleweek.controllers')
 
-  .controller('ProfileController', function ($scope, $stateParams, $ionicLoading, $moment, $ionicContentBanner, $timeout, AuthService, ServerValidator, User, Timezone) {
+  .controller('ProfileController', function ($scope, $stateParams, $moment, $ionicContentBanner, $timeout, AuthService, ServerValidator, User, Timezone, swLoading) {
     $scope.errorMessages = {};
     $scope.timezones = [];
     $scope.profile = {};
@@ -27,7 +27,7 @@ angular.module('Simpleweek.controllers')
 
       if (profileForm.$dirty || profileForm.$valid) {
         var success = function(response) {
-          $ionicLoading.hide();
+          swLoading.hide();
           setServerValidityAndPristine();
 
           AuthService.currentUser.config = response.plain();
@@ -37,7 +37,7 @@ angular.module('Simpleweek.controllers')
 
         var error = function(response) {
           var errorResponse = response.data;
-          $ionicLoading.hide();
+          swLoading.hide();
 
           if (response.status && 400 === response.status) {
             var errors = [
@@ -56,9 +56,7 @@ angular.module('Simpleweek.controllers')
           }
         };
 
-        $ionicLoading.show({
-          template: 'Loading...'
-        });
+        swLoading.show();
 
         contentBannerCloseCallback && contentBannerCloseCallback();
         User.post({profile: $scope.profile}).then(success, error);
