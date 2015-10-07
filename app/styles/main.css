@@ -481,6 +481,7 @@ label.has-error i {
 }
 .bar.bar-balanced {
   background-color: #27925C;
+  border-color: #27925C;
 }
 /** Profile */
 .sw-profile-save::before {

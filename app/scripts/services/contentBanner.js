@@ -25,8 +25,18 @@ angular.module('Simpleweek.services')
       }
 
       function getActiveView (body) {
+        // first, search under side menu (this fixes bug when public.start view is hidded but has active state)
+        var views = body.querySelectorAll('ion-side-menus ion-view[nav-view="active"]');
+
+        // if nothing is found, then search without tag (it could be a form[nav-view="active"])
+        if (views.length == 0) {
+          views = body.querySelectorAll('ion-side-menus [nav-view="active"]');
+        }
+
         // get the candidate active views
-        var views = body.querySelectorAll('ion-view[nav-view="active"]');
+        if (views.length == 0) {
+          views = body.querySelectorAll('ion-view[nav-view="active"]');
+        }
 
         // If the view is in ion-nav-view, instead of ion-view, it should just be div
         if (views.length == 0) {
