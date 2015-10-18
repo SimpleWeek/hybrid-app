@@ -1,14 +1,9 @@
 <ion-modal-view>
   <form name="taskForm" class="new-task-form" novalidate>
-    <ion-header-bar class="custom-bar">
-      <h1 class="title">Create new task</h1>
-      <div class="buttons right-buttons">
-       <button type="button" side="right" class="button button-green button-save" ng-click="saveFromModal(taskForm)"></button>
-      </div>
-      <div class="buttons left-buttons">
-       <button type="button" class="button button-red button-cancel" ng-click="modal.hide()">
-       </button>
-      </div>
+    <ion-header-bar class="custom-bar bar-balanced">
+      <h1 class="title create-task-header" style="right: auto !important; text-align: center !important;">Create new task</h1>
+      <button type="button" class="left button button-icon icon ion-ios-close-empty sw-create-task-btn-close" ng-click="modal.hide()"></button>
+      <button type="button" ng-disabled="! taskForm.$dirty || (taskForm.$submitted && taskForm.$valid)" class="right button button-icon icon ion-ios-checkmark-empty sw-profile-save" ng-click="saveFromModal(taskForm)"></button>
     </ion-header-bar>
     <ion-content>
       <div class="list">
@@ -37,14 +32,6 @@
           </ionic-datepicker>
           <input type="text" value="{{newTask.startDate.toDate() | date:'MMMM dd, yyyy'}}">
           <input type="hidden" ng-model="newTask.startDate" name="startDate" required>
-          <!-- <pre>
-            submitted: {{taskForm.$submitted}}
-            form valid: {{taskForm.$valid}}
-            form dirty: {{taskForm.$dirty}}
-            form pristine: {{taskForm.$pristine}}
-            StartDate valid: {{taskForm.startDate.$valid}}
-            newTask.startDate: {{newTask.startDate.toDate() | date:'MMMM dd, yyyy'}}
-          </pre> -->
         </label>
       </div>
     </ion-content>
