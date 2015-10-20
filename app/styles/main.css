@@ -1,3 +1,6 @@
+@font-face { font-family: "Ionicons"; src: url("../fonts/ionicons.ttf?v=2.0.1"); }
+@font-face { font-family: "Ionicons"; src: url("../fonts/ionicons.woff?v=2.0.1"); }
+
 /* Your application styles go here */
 
 .todos .todo {border-left: 5px solid #27925C;}
@@ -280,7 +283,6 @@ a.item-content {
       height: 80px; }
       .menu-logout:after {
         content: "";
-        background: url('../img/logout-icon.png');
         width: 14px;
         height: 14px;
         display: block;
