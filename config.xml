@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.simpleweek" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.simpleweek" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>SimpleWeek</name>
   <description>
-        SimplewWeek - it is a powerful personal task manager with interesting workflow and awesome design.
+        SimpleWeek - it is a powerful personal task manager with interesting workflow and awesome design.
     </description>
   <author email="maks.rafalko@gmail.com" href="http://simpleweek.com">
         Maks Rafalko
