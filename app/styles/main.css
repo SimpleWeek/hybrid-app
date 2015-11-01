@@ -359,6 +359,10 @@ label.has-error i {
   background-color: #27925C;
   border-color: #27925C;
 }
+.button.button-balanced {
+  background-color: #27925C;
+  border-color: #27925C;
+}
 /** Profile */
 .sw-profile-save::before {
   font-size: 56px !important;
@@ -431,6 +435,12 @@ label.has-error i {
             position: relative;
             z-index: 2; }
 /** end Profile */
+/** Feedback */
+.feedback-page textarea {
+  height: 100px;
+}
+/** end Feedback */
+
 .content-banner {
   width: 100%;
   color: white;
@@ -443,6 +453,9 @@ label.has-error i {
   background-color: red; }
 .content-banner.info {
   background-color: #333; }
+.content-banner.success {
+  background-color: #27925C;
+}
 .content-banner .content-banner-text {
   -webkit-transition: opacity 500ms linear;
   transition: opacity 500ms linear;

@@ -147,6 +147,18 @@ angular.module('Simpleweek', [
         authenticate: true
       })
 
+      .state('app.feedback', {
+        cache: true,
+        url: '/feedback',
+        views: {
+          'content': {
+            templateUrl: 'templates/feedback.html',
+            controller: 'FeedbackController as feedback',
+          }
+        },
+        authenticate: true
+      })
+
       .state('app.tasks', {
         cache: true,
         url: '/tasks',

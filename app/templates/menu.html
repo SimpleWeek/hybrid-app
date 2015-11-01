@@ -38,6 +38,9 @@
         <ion-item ng-if="isLoggedIn()" menu-close ui-sref="app.stats" class="item-icon-left">
           <i class="icon ion-ios-pulse"></i>Stats
         </ion-item>
+        <ion-item ng-if="isLoggedIn()" menu-close ui-sref="app.feedback" class="item-icon-left">
+          <i class="icon ion-ios-compose-outline"></i>Feedback
+        </ion-item>
       </ion-list>
       <div ng-if="isLoggedIn()" class="padding custom-menu-item menu-logout" nav-clear menu-close ng-click="logout()">
         <a class="item-content ion-power">
