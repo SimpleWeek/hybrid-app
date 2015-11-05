@@ -1,33 +1,24 @@
 'use strict';
 angular.module('Simpleweek.controllers')
 
-  .controller('TasksController', function ($scope, $http, $moment, $ionicPopup, $ionicModal, swLoading, ENV, AuthService, Todo) {
-    $scope.tasks = [];
+  .controller('TasksController', function ($scope, $http, $moment, $ionicPopup, $ionicModal, swLoading, ENV, AuthService, Todo, DatePicker, TaskListState) {
+    $scope.taskListState = TaskListState;
     $scope.env = ENV;
     $scope.newTask = {};
-    $scope.currentDate = $moment();
     $scope.weekDays = Todo.buildWeekDays();
+    TaskListState.currentDate = $moment();
 
-    $scope.datepickerObject = {
-      titleLabel: 'Select a Date',  //Optional
-      setButtonType : 'button-assertive',  //Optional
-      todayButtonType : 'button-assertive',  //Optional
-      closeButtonType : 'button-assertive',  //Optional
-      modalHeaderColor: 'bar-balanced',
-      modalFooterColor: 'bar-balanced',
-      templateType: 'modal', //Optional
-      from: new Date(),   //Optional
-      callback: function (val) {    //Mandatory
-        if (typeof(val) !== 'undefined') {
-          $scope.newTask.startDate = $moment(val);
-        }
+    $scope.datepickerObject = DatePicker.getConfig();
+    $scope.datepickerObject.callback = function (val) {
+      if (typeof(val) !== 'undefined') {
+        $scope.newTask.startDate = $moment(val);
       }
     };
 
     $scope.$on('$ionicView.beforeEnter', function() {
-      if (0 === $scope.tasks.length) {
+      if (0 === TaskListState.tasks.length) {
         Todo.getForToday().then(function (tasks) {
-          $scope.tasks = tasks;
+          TaskListState.tasks = tasks;
         });
       }
       $scope.weekDays = Todo.buildWeekDays();
@@ -62,8 +53,8 @@ angular.module('Simpleweek.controllers')
 
         Todo.post($scope.newTask).then(function(restangularTask) {
           // push to today's tasks array only if task created for today
-          if ($scope.currentDate.format('YYYY-MM-DD') === newTask.startDate.format('YYYY-MM-DD')) {
-            $scope.tasks.push(restangularTask);
+          if (TaskListState.currentDate.format('YYYY-MM-DD') === newTask.startDate.format('YYYY-MM-DD')) {
+            TaskListState.tasks.push(restangularTask);
           }
         });
 
@@ -84,13 +75,13 @@ angular.module('Simpleweek.controllers')
 
       task.remove().then(function() {
         swLoading.hide();
-        $scope.tasks.splice($scope.tasks.indexOf(task), 1);
+        TaskListState.tasks.splice(TaskListState.tasks.indexOf(task), 1);
       });
     };
 
     $scope.refresh = function() {
       Todo.getForToday().then(function (tasks) {
-        $scope.tasks = tasks;
+        TaskListState.tasks = tasks;
         $scope.weekDays = Todo.buildWeekDays();
       })
       .finally(function() {
@@ -118,11 +109,11 @@ angular.module('Simpleweek.controllers')
 
       var currentWeekDay = $scope.weekDays[$scope.weekDays.indexOf(weekDay)];
       currentWeekDay.active = true;
-      $scope.currentDate = currentWeekDay.dateMoment;
+      TaskListState.currentDate = currentWeekDay.dateMoment;
 
       Todo.getByDay(weekDay.date).then(function (tasks) {
         swLoading.hide();
-        $scope.tasks = tasks;
+        TaskListState.tasks = tasks;
       });
     };
   });

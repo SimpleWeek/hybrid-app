@@ -1,8 +1,11 @@
 <ion-view title="Task">
   <ion-content class="has-header">
     <div class="card">
-      <div target-blank class="item item-text-wrap" ng-class="{ 'completed': 2 == task.status, 'recurring': task.recurring }" ng-bind-html="task.text | markdown">
+      <div target-blank class="item item-text-wrap" ng-class="{ 'completed': 2 == task.task.status, 'recurring': task.task.recurring }" ng-bind-html="task.task.text | markdown">
       </div>
+    </div>
+    <div class="padding">
+      <button ng-click="task.edit()" type="button" class="button button-block button-balanced">Edit</button>
     </div>
   </ion-content>
 </ion-view>

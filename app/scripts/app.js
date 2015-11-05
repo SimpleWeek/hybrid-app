@@ -23,7 +23,7 @@ angular.module('Simpleweek', [
   'restangular'
 ])
 
-  .run(function ($ionicPlatform, $ionicPopup, $rootScope, $state, $ionicHistory, $http, AuthService, Restangular, ENV) {
+  .run(function ($ionicPlatform, $ionicPopup, $rootScope, $state, $ionicHistory, $http, AuthService, Restangular, ENV, _) {
     $ionicPlatform.ready(function () {
 
       if (window.Connection) {
@@ -179,7 +179,7 @@ angular.module('Simpleweek', [
         views: {
           'content': {
             templateUrl: 'templates/task.html',
-            controller: 'TaskController'
+            controller: 'TaskController as task'
           }
         },
         authenticate: true

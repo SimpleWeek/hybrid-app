@@ -1,0 +1,39 @@
+<ion-modal-view>
+  <form name="task.taskForm" class="new-task-form" novalidate>
+    <ion-header-bar class="custom-bar bar-balanced">
+      <h1 class="title create-task-header" style="right: auto !important; text-align: center !important;">Edit task</h1>
+      <button type="button" class="left button button-icon icon ion-ios-close-empty sw-create-task-btn-close" ng-click="task.modal.hide()"></button>
+      <button type="button" ng-disabled="! task.taskForm.$dirty || (task.taskForm.$submitted && task.taskForm.$valid)" class="right button button-icon icon ion-ios-checkmark-empty sw-profile-save" ng-click="task.saveFromModal(task.taskForm)"></button>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list">
+        <label ng-class="{'has-error': (task.taskForm.$submitted || task.taskForm.text.$dirty) && task.taskForm.text.$invalid}" class="item item-input item-stacked-label">
+          <span class="input-label">Text </span>
+          <span ng-if="(task.taskForm.$submitted || task.taskForm.text.$dirty) && task.taskForm.text.$invalid" class="input-label">This value should not be blank</span>
+          <input type="text" placeholder="Task's text" ng-model="task.task.text" name="text" required>
+        </label>
+        <!--<label class="item item-input item-select">-->
+          <!--<div class="input-label">-->
+            <!--Repeat-->
+          <!--</div>-->
+          <!--<select ng-model="task.newTask.frequency">-->
+            <!--<option value="" selected>Never</option>-->
+            <!--<option value="1">Daily</option>-->
+            <!--<option value="2">Each 2 days</option>-->
+            <!--<option value="3">Weekly</option>-->
+            <!--<option value="5">Monthly</option>-->
+            <!--<option value="6">Yearly</option>-->
+          <!--</select>-->
+        <!--</label>-->
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Date </span>
+          <ionic-datepicker input-obj="task.datepickerObject">
+            <button type="button" style="visibility: hidden;"></button>
+          </ionic-datepicker>
+          <input type="text" value="{{task.task.startDate.toDate() | date:'MMMM dd, yyyy'}}">
+          <input type="hidden" ng-model="task.task.startDate" name="startDate" required>
+        </label>
+      </div>
+    </ion-content>
+  </form>
+</ion-modal-view>
