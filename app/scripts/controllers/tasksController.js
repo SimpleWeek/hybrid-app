@@ -1,11 +1,9 @@
 'use strict';
 angular.module('Simpleweek.controllers')
-
-  .controller('TasksController', function ($scope, $http, $moment, $ionicPopup, $ionicModal, swLoading, ENV, AuthService, Todo, DatePicker, TaskListState) {
+  .controller('TasksController', function ($scope, $http, $moment, $ionicPopup, $ionicModal, swLoading, ENV, AuthService, Todo, DatePicker, TaskListState, _) {
     $scope.taskListState = TaskListState;
     $scope.env = ENV;
     $scope.newTask = {};
-    $scope.weekDays = Todo.buildWeekDays();
     TaskListState.currentDate = $moment();
 
     $scope.datepickerObject = DatePicker.getConfig();
@@ -21,7 +19,7 @@ angular.module('Simpleweek.controllers')
           TaskListState.tasks = tasks;
         });
       }
-      $scope.weekDays = Todo.buildWeekDays();
+      TaskListState.buildWeekDays();
     });
 
     $ionicModal.fromTemplateUrl('templates/modal/createTask.html', {
@@ -65,9 +63,17 @@ angular.module('Simpleweek.controllers')
       }
     };
 
+    $scope.onSwipeContentRight = function (event) {
+      modifyCurrentDate(event, 'subtract', 1);
+    };
+
+    $scope.onSwipeContentLeft = function (event) {
+      modifyCurrentDate(event, 'add', 1);
+    };
+
     $scope.create = function() {
       $scope.modal.show();
-      $scope.newTask.startDate = $moment();
+      $scope.newTask.startDate = TaskListState.currentDate;
     };
 
     $scope.remove = function(task) {
@@ -82,7 +88,7 @@ angular.module('Simpleweek.controllers')
     $scope.refresh = function() {
       Todo.getForToday().then(function (tasks) {
         TaskListState.tasks = tasks;
-        $scope.weekDays = Todo.buildWeekDays();
+        TaskListState.buildWeekDays();
       })
       .finally(function() {
         // Stop the ion-refresher from spinning
@@ -103,11 +109,11 @@ angular.module('Simpleweek.controllers')
 
     $scope.chooseWeekDay = function(weekDay) {
       swLoading.show();
-      _.each($scope.weekDays, function (day) {
+      _.each(TaskListState.weekDays, function (day) {
         day.active = false;
       });
 
-      var currentWeekDay = $scope.weekDays[$scope.weekDays.indexOf(weekDay)];
+      var currentWeekDay = _.find(TaskListState.weekDays, {date: weekDay.date});
       currentWeekDay.active = true;
       TaskListState.currentDate = currentWeekDay.dateMoment;
 
@@ -116,4 +122,19 @@ angular.module('Simpleweek.controllers')
         TaskListState.tasks = tasks;
       });
     };
+
+    function modifyCurrentDate(event, method, dayCount) {
+      if ('ION-CONTENT' === event.target.tagName) { // to not conflict with list item gestures
+        var nextDay = TaskListState.currentDate[method](dayCount, 'day').format('YYYY-MM-DD');
+        swLoading.show();
+
+        var isPastDate = 'subtract' == method;
+        TaskListState.setWeekDay(nextDay, isPastDate);
+
+        Todo.getByDay(nextDay).then(function (tasks) {
+          swLoading.hide();
+          TaskListState.tasks = tasks;
+        });
+      }
+    }
   });

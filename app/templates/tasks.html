@@ -8,14 +8,14 @@
 
   <ion-header-bar class="bar-light bar-subheader bar-week">
     <div class="row">
-      <div ng-repeat="weekDay in weekDays" ng-click="chooseWeekDay(weekDay)" ng-class="{ active: weekDay.active }" class="week-day col col-20">
+      <div ng-repeat="weekDay in taskListState.weekDays" ng-click="chooseWeekDay(weekDay)" ng-class="{ active: weekDay.active }" class="week-day col col-20">
         <div>{{weekDay.title}}</div>
         <div>{{weekDay.number}}</div>
       </div>
     </div>
   </ion-header-bar>
 
-  <ion-content class="has-header has-week">
+  <ion-content class="has-header has-week" sw-detect-gestures sw-on-swipe-left="onSwipeContentLeft" sw-on-swipe-right="onSwipeContentRight">
     <ion-refresher
       pulling-text="Pull to refresh..."
       on-refresh="refresh()">
