@@ -38,7 +38,10 @@ angular.module('Simpleweek.controllers')
       vm.taskForm.$setSubmitted();
 
       if (vm.taskForm.$valid) {
-        Restangular.copy(vm.task).put().then(function() {
+        // workaround for Restangular (known bug)
+        var taskCopy = Restangular.copy(vm.task);
+        taskCopy.put().then(function() {
+          vm.task = taskCopy;
           var index = _.findIndex(TaskListState.tasks, {'id': vm.task.id});
           if (TaskListState.currentDate.format('YYYY-MM-DD') !== vm.task.startDate.format('YYYY-MM-DD')) {
             if (index > -1) {

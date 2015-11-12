@@ -45,7 +45,6 @@ angular.module('Simpleweek.controllers')
         $scope.newTask.recurring = $scope.newTask.frequency > 0 ? 1 : 0;
         $scope.newTask.permanent = 0;
         $scope.newTask.position = 10;
-        $scope.newTask.description = 'from mobile';
 
         var newTask = $scope.newTask;
 

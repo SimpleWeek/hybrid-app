@@ -12,6 +12,10 @@
           <span ng-if="(taskForm.$submitted || taskForm.text.$dirty) && taskForm.text.$invalid" class="input-label">This value should not be blank</span>
           <input type="text" placeholder="Task's text" ng-model="newTask.text" name="text" required>
         </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Description</span>
+          <textarea placeholder="Your comments" ng-model="newTask.description" name="description"></textarea>
+        </label>
         <label class="item item-input item-select">
           <div class="input-label">
             Repeat
