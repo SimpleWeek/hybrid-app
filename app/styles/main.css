@@ -558,3 +558,4 @@ label.has-error i {
 }
 .create-task-header {right: 0 !important;}
 .sw-create-task-btn-close::before {font-size: 46px !important;}
+.task-description {min-height: 48px;}

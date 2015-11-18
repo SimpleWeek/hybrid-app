@@ -20,7 +20,8 @@ angular.module('Simpleweek', [
   'Simpleweek.validators',
   'angular-momentjs',
   'ngStorage',
-  'restangular'
+  'restangular',
+  'monospaced.elastic'
 ])
 
   .run(function ($ionicPlatform, $ionicPopup, $rootScope, $state, $ionicHistory, $http, AuthService, Restangular, ENV, _) {
