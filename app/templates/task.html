@@ -5,7 +5,7 @@
       </div>
       <div ng-if="task.task.description" class="item item-body">
         <h2>Description</h2>
-        <p>{{task.task.description}}</p>
+        <p ng-bind-html="task.task.description | nl2br"></p>
       </div>
     </div>
     <div class="padding">
