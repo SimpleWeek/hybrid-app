@@ -21,8 +21,10 @@
       on-refresh="refresh()">
     </ion-refresher>
     <ion-list class="todos" show-delete="false" can-swipe="true">
-      <ion-item class="todo" ng-class="{ 'completed': 2 == task.status, 'recurring': task.recurring }" on-swipe-right="changeCompleted(task)" ng-repeat="task in taskListState.tasks" ui-sref="app.single_task({ taskId: task.id, taskObject: task })">
-        <span ng-bind-html="task.text | markdown">{{task.text}}</span>
+      <ion-item class="todo" ng-class="{ 'Add icons to tcompleted': 2 == task.status, 'recurring': task.recurring, 'description': task.description }" on-swipe-right="changeCompleted(task)" ng-repeat="task in taskListState.tasks" ui-sref="app.single_task({ taskId: task.id, taskObject: task })">
+        <i ng-if="task.recurring" class="task-status-icon recurring icon ion-ios-loop-strong"></i>
+        <i ng-if="task.description" class="task-status-icon icon ion-ios-paper-outline"></i>
+        <span class="text" ng-bind-html="task.text | markdown"></span>
         <ion-option-button class="button-assertive icon ion-trash-a" ng-click="remove(task)"></ion-option-button>
       </ion-item>
     </ion-list>

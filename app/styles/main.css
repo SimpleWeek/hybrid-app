@@ -559,3 +559,17 @@ label.has-error i {
 .create-task-header {right: 0 !important;}
 .sw-create-task-btn-close::before {font-size: 46px !important;}
 .task-description {min-height: 48px;}
+.todo .task-status-icon {
+  font-size: 26px;
+  top: 0;
+  align-items: center;
+  display: flex;
+  -webkit-box-align: center;
+  width: 28px;
+  position: absolute;
+  height: 100%;
+}
+.todo .task-status-icon.recurring {font-size: 22px;}
+.todo.description span.text, .todo.recurring span.text {
+  padding-left: 28px;
+}
