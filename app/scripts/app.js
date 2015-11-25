@@ -67,6 +67,11 @@ angular.module('Simpleweek', [
         }
       });
 
+      if (AuthService.isLoggedIn()) {
+        $ionicHistory.nextViewOptions({disableBack: true});
+        $state.go('app.tasks');
+      }
+
       Restangular.setBaseUrl(ENV.api.endpoint);
       Restangular.setDefaultRequestParams({'access_token': AuthService.currentUser['access_token']});
 
