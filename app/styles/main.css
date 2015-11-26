@@ -356,7 +356,7 @@ label.has-error i {
   height: 50px !important;
 }
 .bar.bar-balanced {
-  background-color: #27925C;
+  background-color: #27925C !important;
   border-color: #27925C;
 }
 .button.button-balanced {
@@ -535,6 +535,10 @@ label.has-error i {
 .public-view .content-bg label.has-error i{
   color: #F5432C !important;
 }
+.public-view.pane {
+  background-color: #27925C;
+}
+.public-view .bar-balanced.hide {display: block !important;}
 .auth-input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    #fff !important;
 }
